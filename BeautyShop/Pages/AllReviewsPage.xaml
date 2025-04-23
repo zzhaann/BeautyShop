@@ -1,0 +1,29 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BeautyShop.Pages.AllReviewsPage"
+             Title="Все отзывы">
+
+    <VerticalStackLayout Padding="10" Spacing="10">
+        <Label Text="🔍 Фильтрация по названию услуги:" FontSize="16" />
+        <Entry x:Name="SearchEntry" Placeholder="Введите название услуги" TextChanged="OnSearchTextChanged"/>
+
+        <CollectionView x:Name="AllReviewsList">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="5" Padding="10" BorderColor="Gray" CornerRadius="10">
+                        <VerticalStackLayout>
+                            <Label Text="{Binding ServiceTitle}" FontSize="16" FontAttributes="Bold" />
+                            <Label Text="{Binding Username}" />
+                            <Label Text="{Binding Comment}" />
+                            <Label Text="{Binding Rating, StringFormat='⭐ {0}'}" />
+                            <Label Text="{Binding Date, StringFormat='🕓 {0:dd.MM.yyyy HH:mm}'}"
+                                   FontSize="12" TextColor="Gray" />
+                            <Button Text="🗑 Удалить" Clicked="OnDeleteClicked"
+                                    BackgroundColor="Crimson" TextColor="White"/>
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>

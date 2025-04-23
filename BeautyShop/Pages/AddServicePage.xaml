@@ -1,0 +1,27 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BeautyShop.Pages.AddServicePage"
+             Title="Добавить услугу"
+             BackgroundColor="White">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Label Text="Название услуги" />
+            <Entry x:Name="TitleEntry" Placeholder="Например: Маникюр" />
+
+            <Label Text="Описание" />
+            <Editor x:Name="DescriptionEditor" Placeholder="Описание услуги..." AutoSize="TextChanges" />
+
+            <Label Text="Цена (₸)" />
+            <Entry x:Name="PriceEntry" Keyboard="Numeric" Placeholder="Например: 5000" />
+
+            <Label Text="Изображение" />
+            <Image x:Name="ServiceImage" HeightRequest="150" Aspect="AspectFill" BackgroundColor="#eee"/>
+            <Button Text="📸 Загрузить фото" Clicked="OnPickImageClicked" />
+
+            <Button Text="✅ Сохранить" Clicked="OnSaveClicked" BackgroundColor="#4CAF50" TextColor="White"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

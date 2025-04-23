@@ -1,0 +1,15 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BeautyShop.Pages.AddReviewPage"
+             Title="Оставить отзыв">
+
+    <VerticalStackLayout Padding="20" Spacing="15">
+        <Label Text="Оценка (1-5)" />
+        <Entry x:Name="RatingEntry" Keyboard="Numeric" Placeholder="Например: 5" />
+
+        <Label Text="Комментарий" />
+        <Editor x:Name="CommentEditor" Placeholder="Напишите ваш отзыв..." AutoSize="TextChanges"/>
+
+        <Button Text="✅ Отправить отзыв" Clicked="OnSubmitClicked" BackgroundColor="#4CAF50" TextColor="White"/>
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,0 +1,17 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BeautyShop.Pages.LoginPage"
+             Title="Вход"
+             BackgroundColor="#fff">
+
+    <VerticalStackLayout Padding="30" Spacing="15" VerticalOptions="Center">
+
+        <Label Text="Вход в BeautyShop" FontSize="24" HorizontalOptions="Center"/>
+
+        <Entry x:Name="UsernameEntry" Placeholder="Логин" />
+        <Entry x:Name="PasswordEntry" Placeholder="Пароль" IsPassword="True" />
+
+        <Button Text="Войти" Clicked="OnLoginClicked" BackgroundColor="#c2185b" TextColor="White"/>
+        <Button Text="Нет аккаунта? Зарегистрируйтесь" Clicked="OnRegisterRedirect" BackgroundColor="Transparent" TextColor="#c2185b"/>
+    </VerticalStackLayout>
+</ContentPage>
