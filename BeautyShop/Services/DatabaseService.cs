@@ -13,8 +13,21 @@ namespace BeautyShop.Services
             if (_database != null)
                 return;
 
-            var dbPath = Path.Combine(FileSystem.AppDataDirectory, "salon.db3");
+            var dbPath = Path.Combine(FileSystem.AppDataDirectory, "beautyshop.db3");
             _database = new SQLiteAsyncConnection(dbPath);
+            await _database.CreateTableAsync<User>();
+
+            
+            var admin = await _database.Table<User>().Where(u => u.Username == "admin").FirstOrDefaultAsync();
+            if (admin == null)
+            {
+                await _database.InsertAsync(new User
+                {
+                    Username = "admin",
+                    Password = "admin", 
+                    Role = "admin"
+                });
+            }
 
             await _database.CreateTableAsync<User>();
             await _database.CreateTableAsync<Service>();

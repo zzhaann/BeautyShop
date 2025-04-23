@@ -8,18 +8,30 @@
 
         <Label Text="Регистрация в BeautyShop" FontSize="24" HorizontalOptions="Center"/>
 
-        <Entry x:Name="UsernameEntry" Placeholder="Логин" />
-        <Entry x:Name="PasswordEntry" Placeholder="Пароль" IsPassword="True" />
-        <Picker x:Name="RolePicker" Title="Роль">
-            <Picker.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>user</x:String>
-                    <x:String>admin</x:String>
-                </x:Array>
-            </Picker.ItemsSource>
-        </Picker>
+        <Entry x:Name="UsernameEntry"
+               Placeholder="Логин"
+               ClearButtonVisibility="WhileEditing"
+               Keyboard="Default" />
 
-        <Button Text="Зарегистрироваться" Clicked="OnRegisterClicked" BackgroundColor="#00796B" TextColor="White"/>
-        <Button Text="Назад ко входу" Clicked="OnLoginRedirect" BackgroundColor="Transparent" TextColor="#00796B"/>
+        <Entry x:Name="PasswordEntry"
+               Placeholder="Пароль"
+               IsPassword="True"
+               ClearButtonVisibility="WhileEditing" />
+
+        <!-- 🔐 Хочешь — добавим подтверждение -->
+        <Entry x:Name="ConfirmPasswordEntry"
+               Placeholder="Повторите пароль"
+               IsPassword="True"
+               ClearButtonVisibility="WhileEditing" />
+
+        <Button Text="Зарегистрироваться"
+                Clicked="OnRegisterClicked"
+                BackgroundColor="#00796B"
+                TextColor="White" />
+
+        <Button Text="Назад ко входу"
+                Clicked="OnLoginRedirect"
+                BackgroundColor="Transparent"
+                TextColor="#00796B" />
     </VerticalStackLayout>
 </ContentPage>

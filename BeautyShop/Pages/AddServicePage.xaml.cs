@@ -55,7 +55,7 @@ public partial class AddServicePage : ContentPage
             Description = description,
             Price = price,
             ImagePath = _imagePath,
-            CreatedBy = Preferences.Get("user_name", "admin") // 👈 сохраняем автора
+            CreatedBy = Preferences.Get("user_name", "admin") 
         };
 
         await _db.AddServiceAsync(service);

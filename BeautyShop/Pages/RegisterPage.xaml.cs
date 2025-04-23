@@ -18,27 +18,39 @@ public partial class RegisterPage : ContentPage
     {
         string username = UsernameEntry.Text;
         string password = PasswordEntry.Text;
-        string role = RolePicker.SelectedItem?.ToString();
 
-        if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(role))
+        if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
         {
             await DisplayAlert("Ошибка", "Заполните все поля", "ОК");
+            return;
+        }
+
+        if (password.Length < 6 || !password.Any(char.IsDigit) || !password.Any(char.IsLetter))
+        {
+            await DisplayAlert("Слабый пароль", "Пароль должен содержать минимум 6 символов, включая буквы и цифры", "ОК");
             return;
         }
 
         var existing = await _db.GetUserAsync(username);
         if (existing != null)
         {
-            await DisplayAlert("Ошибка", "Пользователь уже существует", "ОК");
+            await DisplayAlert("Ошибка", "Пользователь с таким логином уже существует", "ОК");
             return;
         }
 
-        var newUser = new User { Username = username, Password = password, Role = role };
-        await _db.AddUserAsync(newUser);
+        var user = new User
+        {
+            Username = username,
+            Password = password,
+            Role = "user"
+        };
 
-        await DisplayAlert("Успешно", "Пользователь зарегистрирован", "ОК");
+        await _db.AddUserAsync(user);
+        await DisplayAlert("Успешно", "Регистрация прошла успешно!", "ОК");
         await Shell.Current.GoToAsync("//LoginPage");
     }
+
+
 
     private async void OnLoginRedirect(object sender, EventArgs e)
     {
