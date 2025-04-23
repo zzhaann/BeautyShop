@@ -1,0 +1,16 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BeautyShop.Pages.WelcomePage"
+             Title="Добро пожаловать">
+
+    <VerticalStackLayout Padding="30" Spacing="25" VerticalOptions="Center">
+        <Label Text="Добро пожаловать в BeautyShop!"
+               FontSize="26" FontAttributes="Bold"
+               HorizontalOptions="Center" />
+
+        <Image Source="logo.png" HeightRequest="150" />
+
+        <Button Text="🔐 Войти" Clicked="OnLoginClicked" />
+        <Button Text="📝 Зарегистрироваться" Clicked="OnRegisterClicked" />
+    </VerticalStackLayout>
+</ContentPage>

@@ -34,6 +34,7 @@ public static class MauiProgram
         builder.Services.AddSingleton<MyServicesPage>();
         builder.Services.AddSingleton<EditServicePage>();
         builder.Services.AddSingleton<AllReviewsPage>();
+        builder.Services.AddSingleton<WelcomePage>();
 
 
 

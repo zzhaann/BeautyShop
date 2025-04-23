@@ -24,6 +24,8 @@
     <ShellContent Route="MyServicesPage" ContentTemplate="{DataTemplate pages:MyServicesPage}" />
     <ShellContent Route="EditServicePage" ContentTemplate="{DataTemplate pages:EditServicePage}" />
     <ShellContent Route="AllReviewsPage" ContentTemplate="{DataTemplate pages:AllReviewsPage}" />
+    <ShellContent Route="WelcomePage" ContentTemplate="{DataTemplate pages:WelcomePage}" />
+
 
 
 

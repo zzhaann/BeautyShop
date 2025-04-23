@@ -24,6 +24,8 @@ namespace BeautyShop
             Routing.RegisterRoute("EditServicePage", typeof(EditServicePage));
 
             Routing.RegisterRoute("AllReviewsPage", typeof(AllReviewsPage));
+            Routing.RegisterRoute("WelcomePage", typeof(WelcomePage));
+
 
         }
     }
