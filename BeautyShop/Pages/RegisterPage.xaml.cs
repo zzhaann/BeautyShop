@@ -18,10 +18,19 @@ public partial class RegisterPage : ContentPage
     {
         string username = UsernameEntry.Text;
         string password = PasswordEntry.Text;
+        string confirmPassword = ConfirmPasswordEntry.Text;
 
-        if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+        if (string.IsNullOrWhiteSpace(username) ||
+            string.IsNullOrWhiteSpace(password) ||
+            string.IsNullOrWhiteSpace(confirmPassword))
         {
             await DisplayAlert("Ошибка", "Заполните все поля", "ОК");
+            return;
+        }
+
+        if (password != confirmPassword)
+        {
+            await DisplayAlert("Ошибка", "Пароли не совпадают", "ОК");
             return;
         }
 
@@ -49,6 +58,7 @@ public partial class RegisterPage : ContentPage
         await DisplayAlert("Успешно", "Регистрация прошла успешно!", "ОК");
         await Shell.Current.GoToAsync("//LoginPage");
     }
+
 
 
 

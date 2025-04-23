@@ -16,4 +16,15 @@ public partial class UserHomePage : ContentPage
     {
         await Shell.Current.GoToAsync("FavoritesPage");
     }
+
+
+    private async void OnLogoutClicked(object sender, EventArgs e)
+    {
+
+        Preferences.Remove("user_name");
+        Preferences.Remove("user_role");
+
+
+        await Shell.Current.GoToAsync("//WelcomePage");
+    }
 }

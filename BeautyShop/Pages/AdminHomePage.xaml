@@ -7,6 +7,11 @@
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="20">
             <Label Text="👑 Админ-панель BeautyShop" FontSize="24" HorizontalOptions="Center" />
+            <Button Text="🚪 Выйти из аккаунта"
+        Clicked="OnLogoutClicked"
+        BackgroundColor="DarkRed"
+        TextColor="White" />
+
 
             <Button Text="➕ Добавить услугу" Clicked="OnAddServiceClicked" />
             <Button Text="📋 Все записи" />

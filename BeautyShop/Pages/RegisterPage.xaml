@@ -18,7 +18,7 @@
                IsPassword="True"
                ClearButtonVisibility="WhileEditing" />
 
-        <!-- 🔐 Хочешь — добавим подтверждение -->
+        
         <Entry x:Name="ConfirmPasswordEntry"
                Placeholder="Повторите пароль"
                IsPassword="True"
