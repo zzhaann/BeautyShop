@@ -10,5 +10,5 @@ public class Service
     public decimal Price { get; set; }
     public string ImagePath { get; set; }
 
-    public string CreatedBy { get; set; } // 👈 кто добавил услугу (логин)
+    public string CreatedBy { get; set; } 
 }

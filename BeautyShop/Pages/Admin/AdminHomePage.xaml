@@ -14,8 +14,8 @@
 
 
             <Button Text="➕ Добавить услугу" Clicked="OnAddServiceClicked" />
-            <Button Text="📋 Все записи" />
-            <Button Text="👥 Список клиентов" />
+            <Button Text="📋 Все записи" Clicked="OnHistoryClicked"/>
+            <Button Text="👥 Список клиентов"  Clicked="OnClients"/>
             <Button Text="🧾 Мои услуги" Clicked="OnMyServicesClicked" />
             <Button Text="📖 Все отзывы" Clicked="OnGoToAllReviewsPageClicked" />
 

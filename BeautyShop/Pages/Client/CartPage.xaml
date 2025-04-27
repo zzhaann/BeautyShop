@@ -1,0 +1,47 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BeautyShop.Pages.CartPage"
+             Title="Корзина">
+
+    <ContentPage.Content>
+        <VerticalStackLayout Padding="10" Spacing="10">
+
+            <Label Text="Моя корзина" 
+                   FontSize="24" 
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+
+            <CollectionView x:Name="CartCollectionView"
+                            ItemsLayout="VerticalList"
+                            SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="LightGray" CornerRadius="10" Padding="10" Margin="5">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Title}" FontSize="18" />
+                                <Label Text="{Binding Price, StringFormat='Цена: {0} ₸'}" FontSize="14" TextColor="Gray" />
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label x:Name="TotalLabel"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+
+            <Button Text="Оформить заказ"
+                    BackgroundColor="DarkGreen"
+                    TextColor="White"
+                    Clicked="OnCheckoutClicked" />
+
+            <Button Text="Очистить корзину"
+                    BackgroundColor="DarkRed"
+                    TextColor="White"
+                    Clicked="OnClearCartClicked" />
+
+        </VerticalStackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

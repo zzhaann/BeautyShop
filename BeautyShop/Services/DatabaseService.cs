@@ -1,6 +1,7 @@
 ﻿using SQLite;
 using BeautyShop.Models;
-
+using System.IO;
+using System.Linq;
 
 namespace BeautyShop.Services
 {
@@ -15,19 +16,6 @@ namespace BeautyShop.Services
 
             var dbPath = Path.Combine(FileSystem.AppDataDirectory, "beautyshop.db3");
             _database = new SQLiteAsyncConnection(dbPath);
-            await _database.CreateTableAsync<User>();
-
-            
-            var admin = await _database.Table<User>().Where(u => u.Username == "admin").FirstOrDefaultAsync();
-            if (admin == null)
-            {
-                await _database.InsertAsync(new User
-                {
-                    Username = "admin",
-                    Password = "admin", 
-                    Role = "admin"
-                });
-            }
 
             await _database.CreateTableAsync<User>();
             await _database.CreateTableAsync<Service>();
@@ -35,11 +23,20 @@ namespace BeautyShop.Services
             await _database.CreateTableAsync<FavoriteService>();
             await _database.CreateTableAsync<Review>();
 
-
-
-
+            // Добавить администратора при первом запуске
+            var admin = await _database.Table<User>().FirstOrDefaultAsync(u => u.Username == "admin");
+            if (admin == null)
+            {
+                await _database.InsertAsync(new User
+                {
+                    Username = "admin",
+                    Password = "admin",
+                    Role = "admin"
+                });
+            }
         }
 
+        // ----------- Работа с пользователями -----------
         public async Task<List<User>> GetUsersAsync()
         {
             await Init();
@@ -65,8 +62,7 @@ namespace BeautyShop.Services
             return user != null;
         }
 
-
-
+        // ----------- Работа с услугами -----------
         public async Task<List<Service>> GetServicesAsync()
         {
             await Init();
@@ -79,7 +75,33 @@ namespace BeautyShop.Services
             return await _database.InsertAsync(service);
         }
 
+        public async Task<Service> GetServiceByIdAsync(int id)
+        {
+            await Init();
+            return await _database.Table<Service>().FirstOrDefaultAsync(s => s.Id == id);
+        }
 
+        public async Task<List<Service>> GetServicesByCreatorAsync(string creator)
+        {
+            await Init();
+            return await _database.Table<Service>().Where(s => s.CreatedBy == creator).ToListAsync();
+        }
+
+        public async Task DeleteServiceAsync(int serviceId)
+        {
+            await Init();
+            var service = await _database.Table<Service>().FirstOrDefaultAsync(s => s.Id == serviceId);
+            if (service != null)
+                await _database.DeleteAsync(service);
+        }
+
+        public async Task UpdateServiceAsync(Service service)
+        {
+            await Init();
+            await _database.UpdateAsync(service);
+        }
+
+        // ----------- Работа с историей заказов -----------
         public async Task<int> SaveOrderHistoryAsync(OrderHistory order)
         {
             await Init();
@@ -94,28 +116,17 @@ namespace BeautyShop.Services
 
 
 
-
-        public async Task<List<FavoriteService>> GetFavoritesAsync()
+        public async Task<List<OrderHistory>> GetOrderHistoryByUserAsync(string username)
         {
             await Init();
-            return await _database.Table<FavoriteService>().ToListAsync();
-        }
-
-        public async Task AddToFavoritesAsync(FavoriteService favorite)
-        {
-            await Init();
-            await _database.InsertAsync(favorite);
-        }
-
-        public async Task RemoveFromFavoritesAsync(int serviceId)
-        {
-            await Init();
-            var existing = await _database.Table<FavoriteService>().FirstOrDefaultAsync(f => f.ServiceId == serviceId);
-            if (existing != null)
-                await _database.DeleteAsync(existing);
+            return await _database.Table<OrderHistory>()
+                                   .Where(o => o.Username == username)
+                                   .OrderByDescending(o => o.CreatedAt)
+                                   .ToListAsync();
         }
 
 
+        // ----------- Работа с отзывами -----------
         public async Task AddReviewAsync(Review review)
         {
             await Init();
@@ -131,7 +142,6 @@ namespace BeautyShop.Services
                 .ToListAsync();
         }
 
-
         public async Task<double> GetAverageRatingAsync(int serviceId)
         {
             await Init();
@@ -142,44 +152,12 @@ namespace BeautyShop.Services
             return reviews.Count == 0 ? 0 : reviews.Average(r => r.Rating);
         }
 
-        public async Task<Service> GetServiceByIdAsync(int id)
-        {
-            await Init();
-            return await _database.Table<Service>().FirstOrDefaultAsync(s => s.Id == id);
-        }
-
-
         public async Task DeleteReviewAsync(int reviewId)
         {
             await Init();
             var review = await _database.Table<Review>().FirstOrDefaultAsync(r => r.Id == reviewId);
             if (review != null)
                 await _database.DeleteAsync(review);
-        }
-
-     
-        public async Task<List<Service>> GetServicesByCreatorAsync(string creator)
-        {
-            await Init();
-            return await _database.Table<Service>()
-                .Where(s => s.CreatedBy == creator)
-                .ToListAsync();
-        }
-
-
-        public async Task DeleteServiceAsync(int serviceId)
-        {
-            await Init();
-            var service = await _database.Table<Service>().FirstOrDefaultAsync(s => s.Id == serviceId);
-            if (service != null)
-                await _database.DeleteAsync(service);
-        }
-
-
-        public async Task UpdateServiceAsync(Service service)
-        {
-            await Init();
-            await _database.UpdateAsync(service);
         }
 
         public async Task<List<ReviewWithService>> GetAllReviewsWithServiceAsync()
@@ -201,6 +179,71 @@ namespace BeautyShop.Services
                         ServiceId = r.ServiceId,
                         ServiceTitle = s.Title
                     }).ToList();
+        }
+
+        // ----------- Работа с избранным -----------
+        public async Task<List<Service>> GetFavoritesAsync()
+        {
+            await Init();
+            var username = Preferences.Get("user_name", "");
+
+            var favoriteIds = (await _database.Table<FavoriteService>()
+                .Where(f => f.Username == username)
+                .ToListAsync())
+                .Select(f => f.ServiceId)
+                .ToList();
+
+            var services = await _database.Table<Service>()
+                .Where(s => favoriteIds.Contains(s.Id))
+                .ToListAsync();
+
+            return services;
+        }
+
+        public async Task AddToFavoritesAsync(FavoriteService favorite)
+        {
+            await Init();
+            favorite.Username = Preferences.Get("user_name", ""); // Важно: добавляем владельца
+            await _database.InsertAsync(favorite);
+        }
+
+        public async Task RemoveFromFavoritesAsync(int serviceId)
+        {
+            await Init();
+            var username = Preferences.Get("user_name", "");
+            var existing = await _database.Table<FavoriteService>()
+                .FirstOrDefaultAsync(f => f.ServiceId == serviceId && f.Username == username);
+
+            if (existing != null)
+                await _database.DeleteAsync(existing);
+        }
+
+        public async Task<bool> IsFavoriteAsync(int serviceId)
+        {
+            await Init();
+            var username = Preferences.Get("user_name", "");
+            var existing = await _database.Table<FavoriteService>()
+                .FirstOrDefaultAsync(f => f.ServiceId == serviceId && f.Username == username);
+
+            return existing != null;
+        }
+
+
+        public async Task<List<User>> GetAllClientsAsync()
+        {
+            await Init();
+            return await _database.Table<User>()
+                .Where(u => u.Role == "user")
+                .ToListAsync();
+        }
+
+
+        public async Task DeleteUserAsync(int userId)
+        {
+            await Init();
+            var user = await _database.Table<User>().FirstOrDefaultAsync(u => u.Id == userId);
+            if (user != null)
+                await _database.DeleteAsync(user);
         }
 
 

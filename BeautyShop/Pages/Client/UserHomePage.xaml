@@ -95,19 +95,16 @@
                     </VerticalStackLayout>
                 </Frame>
 
-                <!-- Выход -->
-                <Frame Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
-                       CornerRadius="15" 
-                       Padding="10"
-                       BackgroundColor="OliveDrab"
-                       HasShadow="True">
-                    <Button Text="Выйти из аккаунта"
-                            Clicked="OnLogoutClicked"
-                            BackgroundColor="Transparent"
-                            TextColor="White"
-                            FontAttributes="Bold"/>
-                </Frame>
-            </Grid>
-        </VerticalStackLayout>
-    </Grid>
+    <VerticalStackLayout Padding="20" Spacing="20" VerticalOptions="Center">
+        <Label Text="Добро пожаловать в BeautyShop!" FontSize="24" HorizontalOptions="Center"/>
+        <Button Text="🚪 Выйти из аккаунта"
+        Clicked="OnLogoutClicked"
+        BackgroundColor="DarkRed"
+        TextColor="White" />
+
+        <Button Text="📅 Посмотреть услуги" Clicked="OnViewServicesClicked" />
+        <Button Text="🛍️ Корзина" Clicked="OnCardClicked"  BindingContext="{Binding .}" />
+        <Button Text="🌟 Избранное" Clicked="OnFavoritesClicked"  BindingContext="{Binding .}" />
+        <Button Text="📖 История записей" Clicked="OnHistoryClicked"  BindingContext="{Binding .}"/>
+    </VerticalStackLayout>
 </ContentPage>

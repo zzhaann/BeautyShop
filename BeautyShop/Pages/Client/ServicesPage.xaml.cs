@@ -16,7 +16,7 @@ public partial class ServicesPage : ContentPage
         _cart = cart;
 
         _userRole = Preferences.Get("user_role", "user");
-        AddServiceBtn.IsVisible = _userRole == "admin";
+        
 
         LoadServices();
     }
@@ -39,10 +39,7 @@ public partial class ServicesPage : ContentPage
         ServicesList.ItemsSource = servicesWithRatings;
     }
 
-    private async void OnAddServiceClicked(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync("AddServicePage");
-    }
+
 
     private async void OnServiceTapped(object sender, EventArgs e)
     {
@@ -70,16 +67,26 @@ public partial class ServicesPage : ContentPage
         {
             var service = item.Service;
 
-            var favorite = new FavoriteService
-            {
-                ServiceId = service.Id,
-                Title = service.Title,
-                Price = service.Price,
-                ImagePath = service.ImagePath
-            };
+            bool alreadyFavorite = await _db.IsFavoriteAsync(service.Id);
 
-            await _db.AddToFavoritesAsync(favorite);
-            await DisplayAlert("Избранное", "Добавлено в избранное!", "ОК");
+            if (alreadyFavorite)
+            {
+                await DisplayAlert("Уведомление", "Эта услуга уже в избранном!", "ОК");
+            }
+            else
+            {
+                var favorite = new FavoriteService
+                {
+                    ServiceId = service.Id,
+                    Title = service.Title,
+                    Price = service.Price,
+                    ImagePath = service.ImagePath
+                    
+                };
+
+                await _db.AddToFavoritesAsync(favorite);
+                await DisplayAlert("Успешно", "Услуга добавлена в избранное!", "ОК");
+            }
         }
     }
 
@@ -95,15 +102,39 @@ public partial class ServicesPage : ContentPage
         }
     }
 
-
-
-
     private async void OnViewReviewsClicked(object sender, EventArgs e)
     {
         if ((sender as Button)?.BindingContext is ServiceWithRating item)
         {
             var service = item.Service;
             await Shell.Current.GoToAsync($"ReviewsPage?serviceId={service.Id}");
+        }
+    }
+
+
+
+    private async void OnAddToCartClicked(object sender, EventArgs e)
+    {
+        if ((sender as Button)?.BindingContext is ServiceWithRating item)
+        {
+            var service = item.Service;
+
+            bool alreadyInCart = _cart.GetCart().Any(x => x.ServiceId == service.Id);
+
+            if (alreadyInCart)
+            {
+                await DisplayAlert("Уведомление", $"Услуга \"{service.Title}\" уже добавлена в корзину.", "ОК");
+                return;
+            }
+
+            _cart.AddToCart(new AppointmentCartItem
+            {
+                ServiceId = service.Id,
+                Title = service.Title,
+                Price = service.Price
+            });
+
+            await DisplayAlert("Добавлено", $"Услуга \"{service.Title}\" добавлена в корзину.", "ОК");
         }
     }
 

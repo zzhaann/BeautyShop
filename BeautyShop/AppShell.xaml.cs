@@ -14,7 +14,7 @@ namespace BeautyShop
             Routing.RegisterRoute("AdminHomePage", typeof(AdminHomePage));
             Routing.RegisterRoute("ServicesPage", typeof(ServicesPage));
             Routing.RegisterRoute("AddServicePage", typeof(AddServicePage));
-            Routing.RegisterRoute("AppointmentCartPage", typeof(AppointmentCartPage));
+            
             Routing.RegisterRoute("OrderHistoryPage", typeof(OrderHistoryPage));
             Routing.RegisterRoute("FavoritesPage", typeof(FavoritesPage));
             Routing.RegisterRoute("AddReviewPage", typeof(AddReviewPage));
@@ -25,8 +25,9 @@ namespace BeautyShop
 
             Routing.RegisterRoute("AllReviewsPage", typeof(AllReviewsPage));
             Routing.RegisterRoute("WelcomePage", typeof(WelcomePage));
-
-
+            Routing.RegisterRoute("ClientsPage", typeof(ClientsPage));
+            Routing.RegisterRoute("CartPage", typeof(CartPage));
+            Routing.RegisterRoute("AdminOrdersPage", typeof(AdminOrdersPage));
         }
     }
 }

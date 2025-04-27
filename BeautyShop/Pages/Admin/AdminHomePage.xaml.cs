@@ -45,6 +45,10 @@ public partial class AdminHomePage : ContentPage
         await Shell.Current.GoToAsync("AllReviewsPage");
     }
 
+    private async void OnClients(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("ClientsPage");
+    }
 
     private async void OnLogoutClicked(object sender, EventArgs e)
     {
@@ -54,6 +58,11 @@ public partial class AdminHomePage : ContentPage
 
         
         await Shell.Current.GoToAsync("//WelcomePage"); 
+    }
+
+    private async void OnHistoryClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("AdminOrdersPage");
     }
 
 
