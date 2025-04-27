@@ -72,4 +72,16 @@ public partial class AdminHomePage : ContentPage
     {
         await Shell.Current.GoToAsync("AddServicePage");
     }
+
+
+    private async void OnLogoutTapped(object sender, EventArgs e)
+    {
+       
+        Preferences.Remove("user_name");
+        Preferences.Remove("user_role");
+
+        
+        await Shell.Current.GoToAsync("//WelcomePage");
+    }
+
 }

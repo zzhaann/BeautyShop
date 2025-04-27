@@ -1,11 +1,12 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BeautyShop.Pages.MyServicesPage"
-             Title="Мои услуги">
+             Title="Мои услуги"
+             >
 
     <ScrollView>
         <VerticalStackLayout Padding="10" Spacing="10">
-            <Label Text="🧾 Услуги, добавленные вами" FontSize="20" FontAttributes="Bold" />
+            <Label Text=" Услуги, добавленные вами" FontSize="20" FontAttributes="Bold" />
 
             <CollectionView x:Name="MyServicesList">
                 <CollectionView.ItemTemplate>
@@ -17,9 +18,9 @@
                                 <Label Text="{Binding Description}" FontSize="14" />
                                 <Label Text="{Binding Price, StringFormat='Цена: {0} ₸'}" FontSize="14" />
 
-                                <HorizontalStackLayout Spacing="10">
-                                    <Button Text="✏ Редактировать" Clicked="OnEditClicked" />
-                                    <Button Text="🗑 Удалить" Clicked="OnDeleteClicked"
+                                <HorizontalStackLayout Spacing="10" Padding="3">
+                                    <Button Text=" Редактировать" Clicked="OnEditClicked" />
+                                    <Button Text=" Удалить" Clicked="OnDeleteClicked"
                                             BackgroundColor="Crimson" TextColor="White" />
                                 </HorizontalStackLayout>
                             </VerticalStackLayout>

@@ -17,6 +17,7 @@ public partial class AdminOrdersPage : ContentPage
     {
         base.OnAppearing();
         var orders = await _db.GetOrderHistoryAsync();
+  
         OrderCollectionView.ItemsSource = orders;
     }
 }

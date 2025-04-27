@@ -4,18 +4,15 @@
              Title="Админ-панель"
              BackgroundColor="White">
 
-    <Grid RowDefinitions="Auto, *, Auto">
+    <Grid RowDefinitions="Auto, *">
 
-
-        <Grid Grid.Row="1">
-        </Grid>
-        
-        
+      
         <CarouselView x:Name="PromoCarousel"
-              Grid.Row="0"
-              HeightRequest="200"
-              Loop="True"
-              IsBounceEnabled="False">
+                      Grid.Row="0"
+                      HeightRequest="180"
+                      Loop="True"
+                      IsBounceEnabled="False"
+                      Margin="10,10,10,0">
             <CarouselView.ItemsSource>
                 <x:Array Type="{x:Type x:String}">
                     <x:String>promo1.jpg</x:String>
@@ -29,48 +26,88 @@
                     <Image Aspect="AspectFill" Source="{Binding}" />
                 </DataTemplate>
             </CarouselView.ItemTemplate>
-            </CarouselView> 
+        </CarouselView>
 
-            <Grid Grid.Row="2" Padding="20" BackgroundColor="#FFF5EE">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+        <ScrollView Grid.Row="1" Padding="10" Margin="0,60,0,0">
+            <Grid ColumnSpacing="10" RowSpacing="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-            <Image Source="client_icon.png" Grid.Column="0" HeightRequest="32" WidthRequest="32" HorizontalOptions="Center">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="OnClientsTapped" />
-                </Image.GestureRecognizers>
-            </Image>
+                
+                <Frame Grid.Row="0" Grid.Column="0" CornerRadius="10" Padding="10" HasShadow="True" BackgroundColor="#FFF5EE" HeightRequest="140">
+                    <VerticalStackLayout Spacing="5" HorizontalOptions="Center">
+                        <Image Source="client_icon.png" HeightRequest="40" WidthRequest="40" />
+                        <Label Text="Клиенты" FontSize="14" FontAttributes="Bold" TextColor="#333" HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnClientsTapped" />
+                    </Frame.GestureRecognizers>
+                </Frame>
 
-            <Image Source="calendar_icon.png" Grid.Column="1" HeightRequest="32" WidthRequest="32" HorizontalOptions="Center">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="OnAppointmentsTapped" />
-                </Image.GestureRecognizers>
-            </Image>
+                
+                <Frame Grid.Row="0" Grid.Column="1" CornerRadius="10" Padding="10" HasShadow="True" BackgroundColor="#FFF5EE" HeightRequest="140">
+                    <VerticalStackLayout Spacing="5" HorizontalOptions="Center">
+                        <Image Source="calendar_icon.png" HeightRequest="40" WidthRequest="40" />
+                        <Label Text="Записи" FontSize="14" FontAttributes="Bold" TextColor="#333" HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnAppointmentsTapped" />
+                    </Frame.GestureRecognizers>
+                </Frame>
 
-            <Image Source="add_icon.png" Grid.Column="2" HeightRequest="32" WidthRequest="32" HorizontalOptions="Center">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="OnAddServiceTapped" />
-                </Image.GestureRecognizers>
-            </Image>
+                
+                <Frame Grid.Row="1" Grid.Column="0" CornerRadius="10" Padding="10" HasShadow="True" BackgroundColor="#FFF5EE" HeightRequest="140">
+                    <VerticalStackLayout Spacing="5" HorizontalOptions="Center">
+                        <Image Source="add_icon.png" HeightRequest="40" WidthRequest="40" />
+                        <Label Text="Добавить услугу" FontSize="14" FontAttributes="Bold" TextColor="#333" HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnAddServiceTapped" />
+                    </Frame.GestureRecognizers>
+                </Frame>
 
-            <Image Source="review_icon.png" Grid.Column="3" HeightRequest="32" WidthRequest="32" HorizontalOptions="Center">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="OnReviewsTapped" />
-                </Image.GestureRecognizers>
-            </Image>
+                
+                <Frame Grid.Row="1" Grid.Column="1" CornerRadius="10" Padding="10" HasShadow="True" BackgroundColor="#FFF5EE" HeightRequest="140">
+                    <VerticalStackLayout Spacing="5" HorizontalOptions="Center">
+                        <Image Source="review_icon.png" HeightRequest="40" WidthRequest="40" />
+                        <Label Text="Отзывы" FontSize="14" FontAttributes="Bold" TextColor="#333" HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnReviewsTapped" />
+                    </Frame.GestureRecognizers>
+                </Frame>
 
-            <Image Source="service_icon.png" Grid.Column="4" HeightRequest="32" WidthRequest="32" HorizontalOptions="Center">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="OnServicesTapped" />
-                </Image.GestureRecognizers>
-            </Image>
+              
+                <Frame Grid.Row="2" Grid.Column="0" CornerRadius="10" Padding="10" HasShadow="True" BackgroundColor="#FFF5EE" HeightRequest="140">
+                    <VerticalStackLayout Spacing="5" HorizontalOptions="Center">
+                        <Image Source="service_icon.png" HeightRequest="40" WidthRequest="40" />
+                        <Label Text="Мои услуги" FontSize="14" FontAttributes="Bold" TextColor="#333" HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnServicesTapped" />
+                    </Frame.GestureRecognizers>
+                </Frame>
 
-        </Grid>
+                
+                <Frame Grid.Row="2" Grid.Column="1" CornerRadius="10" Padding="10" HasShadow="True" BackgroundColor="#FFF5EE" HeightRequest="140">
+                    <VerticalStackLayout Spacing="5" HorizontalOptions="Center">
+                        <Image Source="logout_icon.png" HeightRequest="40" WidthRequest="40"  />
+                        <Label Text="Выход" FontSize="14" FontAttributes="Bold" TextColor="#333" HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnLogoutTapped" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+            </Grid>
+        </ScrollView>
 
     </Grid>
 
