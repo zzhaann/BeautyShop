@@ -23,5 +23,16 @@ namespace BeautyShop.Services
         {
             return _cartItems.Sum(x => x.Price);
         }
+
+
+        public void RemoveFromCart(int serviceId)
+        {
+            var itemToRemove = _cartItems.FirstOrDefault(x => x.ServiceId == serviceId);
+            if (itemToRemove != null)
+            {
+                _cartItems.Remove(itemToRemove);
+            }
+        }
+
     }
 }

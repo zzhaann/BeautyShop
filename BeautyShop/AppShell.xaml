@@ -28,6 +28,7 @@
     <ShellContent Route="ClientsPage" ContentTemplate="{DataTemplate pages:ClientsPage}" />
     <ShellContent Route="CartPage" ContentTemplate="{DataTemplate pages:CartPage}" />
     <ShellContent Route="AdminOrdersPage" ContentTemplate="{DataTemplate pages:AdminOrdersPage}" />
+ 
 
 
 </Shell>

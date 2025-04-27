@@ -42,7 +42,7 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<CartPage>();
         builder.Services.AddSingleton<AdminOrdersPage>();
-
+       
 
 
 #if DEBUG

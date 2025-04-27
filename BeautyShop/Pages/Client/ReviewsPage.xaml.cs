@@ -48,5 +48,8 @@ public partial class ReviewsPage : ContentPage
             await DisplayAlert("Нет отзывов", "Для этой услуги пока нет отзывов.", "ОК");
     }
 
-
+    private async void OnBackClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("..");
+    }
 }

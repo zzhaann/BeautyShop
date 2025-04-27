@@ -1,65 +1,92 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:BeautyShop.Converters"
              x:Class="BeautyShop.Pages.ServicesPage"
              Title="Услуги">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:CartIconConverter x:Key="CartIconConverter" />
+            <local:FavoriteIconConverter x:Key="FavoriteIconConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <Grid RowDefinitions="Auto,*" Padding="10">
 
-        
+        <!-- Поиск -->
+        <SearchBar Placeholder="Поиск услуги..."
+                   x:Name="SearchBar"
+                   TextChanged="OnSearchTextChanged"
+                   Margin="0,0,0,10" />
 
-
-        <CollectionView x:Name="ServicesList" Grid.Row="1">
+        <!-- Список услуг -->
+        <CollectionView x:Name="ServicesList" Grid.Row="1" SelectionMode="None">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Frame Margin="5" Padding="10" BorderColor="LightGray" CornerRadius="15" HasShadow="True">
-                        <VerticalStackLayout Spacing="8">
+                        <Grid ColumnDefinitions="Auto, *, Auto" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="10">
 
-                            <Image Source="{Binding Service.ImagePath}" HeightRequest="150" Aspect="AspectFill" />
+                            <!-- Картинка услуги -->
+                            <Image Source="{Binding Service.ImagePath}" 
+                                   WidthRequest="80" HeightRequest="100"
+                                   Aspect="AspectFill"
+                                   Grid.RowSpan="3" />
 
-                            <Label Text="{Binding Service.Title}" 
-                                   FontAttributes="Bold" 
-                                   FontSize="20"
-                                   HorizontalOptions="Center" />
+                            <!-- Название и цена -->
+                            <StackLayout Grid.Column="1" Spacing="2">
+                                <Label Text="{Binding Service.Title}" 
+                                       FontAttributes="Bold"
+                                       FontSize="18" />
+                                <Label Text="{Binding Service.Price, StringFormat='Цена: {0} ₸'}" 
+                                       FontSize="14"
+                                       TextColor="Gray" />
+                            </StackLayout>
 
-                            <Label Text="{Binding Rating, StringFormat='⭐ Рейтинг: {0:F1}'}" 
-                                   FontSize="14" 
-                                   TextColor="Orange"
-                                   HorizontalOptions="Center" />
+                            <!-- Корзина и избранное -->
+                            <StackLayout Grid.Column="2" Spacing="10" Margin="0, -10 " VerticalOptions="Center">
+                                <ImageButton Source="{Binding IsInCart, Converter={StaticResource CartIconConverter}}"
+                                             Clicked="OnCartClicked"
+                                             WidthRequest="30"
+                                             HeightRequest="30"
+                                             BackgroundColor="Transparent" />
+                                <ImageButton Source="{Binding IsFavorite, Converter={StaticResource FavoriteIconConverter}}"
+                                             Clicked="OnFavoriteClicked"
+                                             WidthRequest="30"
+                                             HeightRequest="30"
+                                             BackgroundColor="Transparent" />
+                            </StackLayout>
 
-                            <Label Text="{Binding Service.Description}" 
+                            <!-- Описание услуги -->
+                            <Label Text="{Binding Service.Description}"
                                    FontSize="14"
-                                   HorizontalOptions="Center" />
+                                   TextColor="DarkGray"
+                                   LineBreakMode="TailTruncation"
+                                   MaxLines="2"
+                                   Grid.Row="1"
+                                   Grid.Column="1"
+                                   Grid.ColumnSpan="2" />
 
-                            <Label Text="{Binding Service.Price, StringFormat='Цена: {0} ₸'}" 
-                                   FontSize="16" 
-                                   FontAttributes="Bold"
-                                   HorizontalOptions="Center" />
+                            <!-- Кнопки Отзывов -->
+                            <StackLayout Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" Spacing="10" Margin="0, 10" HorizontalOptions="Center">
+                                <Button Text="Оставить отзыв"
+                                        BackgroundColor="#F48FB1"
+                                        TextColor="White"
+                                        CornerRadius="10"
+                                        Padding="15,5"
+                                        WidthRequest="140"
+                                        Clicked="OnLeaveReviewClicked"
+                                        BindingContext="{Binding}" />
+                                <Button Text="Отзывы"
+                                        BackgroundColor="#F48FB1"
+                                        TextColor="White"
+                                        CornerRadius="10"
+                                        Padding="15,5"
+                                        WidthRequest="100"
+                                        Clicked="OnViewReviewsClicked"
+                                        BindingContext="{Binding}" />
+                            </StackLayout>
 
-                            <Button Text="➕ В корзину" 
-                                    Clicked="OnAddToCartClicked"
-                                    BackgroundColor="#6200EE"
-                                    TextColor="White"
-                                    CornerRadius="10" />
-
-                            <Button Text="⭐ В избранное" 
-                                    Clicked="OnAddToFavoritesClicked"
-                                    BackgroundColor="#03DAC6"
-                                    TextColor="Black"
-                                    CornerRadius="10" />
-
-                            <Button Text="💬 Оставить отзыв" 
-                                    Clicked="OnLeaveReviewClicked"
-                                    BackgroundColor="#FF9800"
-                                    TextColor="White"
-                                    CornerRadius="10" />
-
-                            <Button Text="📋 Смотреть отзывы" 
-                                    Clicked="OnViewReviewsClicked"
-                                    BackgroundColor="#8BC34A"
-                                    TextColor="White"
-                                    CornerRadius="10" />
-
-                        </VerticalStackLayout>
+                        </Grid>
                     </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
