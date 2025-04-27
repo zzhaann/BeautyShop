@@ -247,5 +247,16 @@ namespace BeautyShop.Services
         }
 
 
+
+        public async Task<int> GetAppointmentsTodayCountAsync()
+        {
+            await Init();
+            var today = DateTime.Today;
+            return await _database.Table<OrderHistory>()
+                .Where(o => o.CreatedAt.Date == today)
+                .CountAsync();
+        }
+
+
     }
 }

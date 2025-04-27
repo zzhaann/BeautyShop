@@ -4,40 +4,74 @@
              Title="Админ-панель"
              BackgroundColor="White">
 
-    <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="20">
-            <Label Text="👑 Админ-панель BeautyShop" FontSize="24" HorizontalOptions="Center" />
-            <Button Text="🚪 Выйти из аккаунта"
-        Clicked="OnLogoutClicked"
-        BackgroundColor="DarkRed"
-        TextColor="White" />
+    <Grid RowDefinitions="Auto, *, Auto">
 
 
-            <Button Text="➕ Добавить услугу" Clicked="OnAddServiceClicked" />
-            <Button Text="📋 Все записи" Clicked="OnHistoryClicked"/>
-            <Button Text="👥 Список клиентов"  Clicked="OnClients"/>
-            <Button Text="🧾 Мои услуги" Clicked="OnMyServicesClicked" />
-            <Button Text="📖 Все отзывы" Clicked="OnGoToAllReviewsPageClicked" />
+        <Grid Grid.Row="1">
+        </Grid>
+        
+        
+        <CarouselView x:Name="PromoCarousel"
+              Grid.Row="0"
+              HeightRequest="200"
+              Loop="True"
+              IsBounceEnabled="False">
+            <CarouselView.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>promo1.jpg</x:String>
+                    <x:String>promo2.jpg</x:String>
+                    <x:String>promo3.jpg</x:String>
+                </x:Array>
+            </CarouselView.ItemsSource>
 
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <Image Aspect="AspectFill" Source="{Binding}" />
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+            </CarouselView> 
 
-            <!-- Список всех услуг -->
-            <!--<Label Text="🧾 Услуги:" FontSize="18" FontAttributes="Bold" Margin="0,20,0,0"/>
-            <CollectionView x:Name="AdminServicesList">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Frame Margin="5" Padding="10" BorderColor="Gray" CornerRadius="10">
-                            <VerticalStackLayout>
-                                <Label Text="{Binding Title}" FontAttributes="Bold" FontSize="18" />
-                                <Label Text="{Binding Description}" FontSize="14" />
-                                <Label Text="{Binding Price, StringFormat='Цена: {0} ₸'}" FontSize="14" />
+            <Grid Grid.Row="2" Padding="20" BackgroundColor="#FFF5EE">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-                                
-                            </VerticalStackLayout>
-                        </Frame>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>-->
-            
-        </VerticalStackLayout>
-    </ScrollView>
+            <Image Source="client_icon.png" Grid.Column="0" HeightRequest="32" WidthRequest="32" HorizontalOptions="Center">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnClientsTapped" />
+                </Image.GestureRecognizers>
+            </Image>
+
+            <Image Source="calendar_icon.png" Grid.Column="1" HeightRequest="32" WidthRequest="32" HorizontalOptions="Center">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnAppointmentsTapped" />
+                </Image.GestureRecognizers>
+            </Image>
+
+            <Image Source="add_icon.png" Grid.Column="2" HeightRequest="32" WidthRequest="32" HorizontalOptions="Center">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnAddServiceTapped" />
+                </Image.GestureRecognizers>
+            </Image>
+
+            <Image Source="review_icon.png" Grid.Column="3" HeightRequest="32" WidthRequest="32" HorizontalOptions="Center">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnReviewsTapped" />
+                </Image.GestureRecognizers>
+            </Image>
+
+            <Image Source="service_icon.png" Grid.Column="4" HeightRequest="32" WidthRequest="32" HorizontalOptions="Center">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnServicesTapped" />
+                </Image.GestureRecognizers>
+            </Image>
+
+        </Grid>
+
+    </Grid>
+
 </ContentPage>

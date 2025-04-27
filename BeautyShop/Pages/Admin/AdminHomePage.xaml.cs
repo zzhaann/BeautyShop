@@ -1,4 +1,3 @@
-using BeautyShop.Models;
 using BeautyShop.Services;
 
 namespace BeautyShop.Pages;
@@ -6,6 +5,7 @@ namespace BeautyShop.Pages;
 public partial class AdminHomePage : ContentPage
 {
     private readonly DatabaseService _db;
+    private CancellationTokenSource _carouselCts;
 
     public AdminHomePage(DatabaseService db)
     {
@@ -13,57 +13,63 @@ public partial class AdminHomePage : ContentPage
         _db = db;
 
         LoadServices();
+        StartCarouselAutoScroll();
     }
 
     private async void LoadServices()
     {
         var services = await _db.GetServicesAsync();
-        //AdminServicesList.ItemsSource = services;
+        
     }
 
-    private async void OnAddServiceClicked(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync("AddServicePage");
-    }
 
-    private async void OnAdminViewReviewsClicked(object sender, EventArgs e)
+
+    private async void StartCarouselAutoScroll()
     {
-        if ((sender as Button)?.BindingContext is Service service)
+        _carouselCts = new CancellationTokenSource();
+        var token = _carouselCts.Token;
+
+        while (!token.IsCancellationRequested)
         {
-            await Shell.Current.GoToAsync($"ReviewsPage?serviceId={service.Id}");
+            await Task.Delay(3000); 
+
+            if (PromoCarousel.ItemsSource is System.Collections.IList items && items.Count > 0)
+            {
+                PromoCarousel.Position = (PromoCarousel.Position + 1) % items.Count;
+            }
         }
     }
 
-    private async void OnMyServicesClicked(object sender, EventArgs e)
+    protected override void OnDisappearing()
     {
-        await Shell.Current.GoToAsync("MyServicesPage");
+        base.OnDisappearing();
+        _carouselCts?.Cancel(); 
     }
 
+    
 
-    private async void OnGoToAllReviewsPageClicked(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync("AllReviewsPage");
-    }
-
-    private async void OnClients(object sender, EventArgs e)
+    private async void OnClientsTapped(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync("ClientsPage");
     }
 
-    private async void OnLogoutClicked(object sender, EventArgs e)
-    {
-        
-        Preferences.Remove("user_name");
-        Preferences.Remove("user_role");
-
-        
-        await Shell.Current.GoToAsync("//WelcomePage"); 
-    }
-
-    private async void OnHistoryClicked(object sender, EventArgs e)
+    private async void OnAppointmentsTapped(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync("AdminOrdersPage");
     }
 
+    private async void OnServicesTapped(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("MyServicesPage");
+    }
 
+    private async void OnReviewsTapped(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("AllReviewsPage");
+    }
+
+    private async void OnAddServiceTapped(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("AddServicePage");
+    }
 }

@@ -3,6 +3,7 @@ using BeautyShop.Services;
 using Microsoft.Extensions.Logging;
 using CommunityToolkit.Maui;
 
+
 namespace BeautyShop;
 
 public static class MauiProgram
