@@ -1,19 +1,113 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BeautyShop.Pages.UserHomePage"
-             Title="Главная (Клиент)"
-             BackgroundColor="#fff">
+             Title="Главная (Клиент)">
 
-    <VerticalStackLayout Padding="20" Spacing="20" VerticalOptions="Center">
-        <Label Text="Добро пожаловать в BeautyShop!" FontSize="24" HorizontalOptions="Center"/>
-        <Button Text="🚪 Выйти из аккаунта"
-        Clicked="OnLogoutClicked"
-        BackgroundColor="DarkRed"
-        TextColor="White" />
+    <Grid>
+        <Image Source="https://i.pinimg.com/736x/a7/03/f6/a703f6aa2e1ac949ce797ac689607aac.jpg" 
+               Aspect="AspectFill" 
+               Opacity="0.6"/>
 
-        <Button Text="📅 Посмотреть услуги" Clicked="OnViewServicesClicked" />
-        <Button Text="🛍️ Корзина" />
-        <Button Text="🌟 Избранное" Clicked="OnFavoritesClicked"  BindingContext="{Binding .}" />
-        <Button Text="📖 История записей" />
-    </VerticalStackLayout>
+        <VerticalStackLayout Padding="20" Spacing="100">
+            <Label Text="Добро пожаловать в BeautyShop!" 
+                   FontSize="30" 
+                   TextColor="OliveDrab"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,20"/>
+
+            <Grid ColumnDefinitions="*,*" 
+                  RowDefinitions="*,*,*" 
+                  ColumnSpacing="15" 
+                  RowSpacing="15">
+
+                <!-- Услуги -->
+                <Frame Grid.Row="0" Grid.Column="0"
+                       CornerRadius="15" 
+                       Padding="15"
+                       BackgroundColor="White"
+                       HasShadow="True">
+                    <VerticalStackLayout Spacing="10" HorizontalOptions="Center">
+                        <Image Source="https://cdn-icons-png.flaticon.com/512/5066/5066736.png"
+                               HeightRequest="40"
+                               WidthRequest="40"
+                               HorizontalOptions="Center"/>
+                        <Button Text="Услуги" 
+                                Clicked="OnViewServicesClicked"
+                                BackgroundColor="Transparent"
+                                TextColor="DarkOliveGreen"
+                                FontAttributes="Bold"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Корзина -->
+                <Frame Grid.Row="0" Grid.Column="1"
+                       CornerRadius="15" 
+                       Padding="15"
+                       BackgroundColor="White"
+                       HasShadow="True">
+                    <VerticalStackLayout Spacing="10" HorizontalOptions="Center">
+                        <Image Source="https://cdn-icons-png.flaticon.com/512/1374/1374128.png"
+                               HeightRequest="40"
+                               WidthRequest="40"
+                               HorizontalOptions="Center"/>
+                        <Button Text="Корзина" 
+                                BackgroundColor="Transparent"
+                                TextColor="DarkOliveGreen"
+                                FontAttributes="Bold"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Избранное -->
+                <Frame Grid.Row="1" Grid.Column="0"
+                       CornerRadius="15" 
+                       Padding="15"
+                       BackgroundColor="White"
+                       HasShadow="True">
+                    <VerticalStackLayout Spacing="10" HorizontalOptions="Center">
+                        <Image Source="https://cdn-icons-png.flaticon.com/512/263/263075.png"
+                               HeightRequest="40"
+                               WidthRequest="40"
+                               HorizontalOptions="Center"/>
+                        <Button Text="Избранное" 
+                                Clicked="OnFavoritesClicked"
+                                BackgroundColor="Transparent"
+                                TextColor="DarkOliveGreen"
+                                FontAttributes="Bold"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- История -->
+                <Frame Grid.Row="1" Grid.Column="1"
+                       CornerRadius="15" 
+                       Padding="15"
+                       BackgroundColor="White"
+                       HasShadow="True">
+                    <VerticalStackLayout Spacing="10" HorizontalOptions="Center">
+                        <Image Source="https://cdn-icons-png.flaticon.com/512/565/565584.png"
+                               HeightRequest="40"
+                               WidthRequest="40"
+                               HorizontalOptions="Center"/>
+                        <Button Text="История" 
+                                BackgroundColor="Transparent"
+                                TextColor="DarkOliveGreen"
+                                FontAttributes="Bold"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Выход -->
+                <Frame Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                       CornerRadius="15" 
+                       Padding="10"
+                       BackgroundColor="OliveDrab"
+                       HasShadow="True">
+                    <Button Text="Выйти из аккаунта"
+                            Clicked="OnLogoutClicked"
+                            BackgroundColor="Transparent"
+                            TextColor="White"
+                            FontAttributes="Bold"/>
+                </Frame>
+            </Grid>
+        </VerticalStackLayout>
+    </Grid>
 </ContentPage>

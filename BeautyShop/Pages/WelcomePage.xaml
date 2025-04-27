@@ -3,14 +3,72 @@
              x:Class="BeautyShop.Pages.WelcomePage"
              Title="Добро пожаловать">
 
-    <VerticalStackLayout Padding="30" Spacing="25" VerticalOptions="Center">
-        <Label Text="Добро пожаловать в BeautyShop!"
-               FontSize="26" FontAttributes="Bold"
-               HorizontalOptions="Center" />
+    <Grid>
 
-        <Image Source="logo.png" HeightRequest="150" />
+        <Image Source="https://i.pinimg.com/736x/6a/97/94/6a979455e016031c93e4b141a10f43d1.jpg"
+               Aspect="AspectFill"
+               Opacity="0.9"
+               IsEnabled="False" />
 
-        <Button Text="🔐 Войти" Clicked="OnLoginClicked" />
-        <Button Text="📝 Зарегистрироваться" Clicked="OnRegisterClicked" />
-    </VerticalStackLayout>
+        <VerticalStackLayout Padding="20" Spacing="40" VerticalOptions="Start" HorizontalOptions="Center">
+
+            
+            <Label Text="Добро пожаловать в BeautyShop!"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center"
+                   TextColor="#2e2e2e"
+                   FontFamily="Sans-Serif"
+                   Margin="0,190,0,20"/>
+
+            
+            <Frame BackgroundColor="White"
+                   CornerRadius="20"
+                   Padding="20"
+                   BorderColor="#e0e0e0"
+                   HasShadow="True"
+                   Opacity="0.90"
+                   WidthRequest="370">
+
+                <VerticalStackLayout Spacing="20" HorizontalOptions="Center">
+
+                   
+                    <Image Source="logo.png"
+                           HeightRequest="00"
+                           WidthRequest="100"
+                           Aspect="AspectFit"/>
+
+                    <Button Text="Войти"
+                            Clicked="OnLoginClicked"
+                            BackgroundColor="OliveDrab"
+                            TextColor="White"
+                            FontFamily="Sans-Serif"
+                            FontSize="18"
+                            CornerRadius="15"
+                            HeightRequest="45"
+                            WidthRequest="330"
+                            BorderColor="OliveDrab"
+                            BorderWidth="2"/>
+
+                    <Button Text="Зарегистрироваться"
+                            Clicked="OnRegisterClicked"
+                            BackgroundColor="OliveDrab"
+                            TextColor="White"
+                            FontFamily="Sans-Serif"
+                            FontSize="18"
+                            CornerRadius="15"
+                            HeightRequest="45"
+                            WidthRequest="330"
+                            BorderColor="OliveDrab"
+                            BorderWidth="2"/>
+
+                </VerticalStackLayout>
+
+            </Frame>
+
+        </VerticalStackLayout>
+
+    </Grid>
+
 </ContentPage>

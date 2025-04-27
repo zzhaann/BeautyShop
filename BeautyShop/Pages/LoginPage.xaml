@@ -1,17 +1,89 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BeautyShop.Pages.LoginPage"
-             Title="Вход"
-             BackgroundColor="#fff">
+             Title="Вход">
 
-    <VerticalStackLayout Padding="30" Spacing="15" VerticalOptions="Center">
+    <Grid>
 
-        <Label Text="Вход в BeautyShop" FontSize="24" HorizontalOptions="Center"/>
+        <Image Source="https://i.pinimg.com/736x/6a/97/94/6a979455e016031c93e4b141a10f43d1.jpg"
+               Aspect="AspectFill"
+               Opacity="0.9"
+               IsEnabled="False" />
 
-        <Entry x:Name="UsernameEntry" Placeholder="Логин" />
-        <Entry x:Name="PasswordEntry" Placeholder="Пароль" IsPassword="True" />
+        <VerticalStackLayout Padding="30" Spacing="20" VerticalOptions="Center">
 
-        <Button Text="Войти" Clicked="OnLoginClicked" BackgroundColor="#c2185b" TextColor="White"/>
-        <Button Text="Нет аккаунта? Зарегистрируйтесь" Clicked="OnRegisterRedirect" BackgroundColor="Transparent" TextColor="#c2185b"/>
-    </VerticalStackLayout>
+            <Frame BackgroundColor="White"
+                   CornerRadius="20"
+                   Padding="25"
+                   BorderColor="#dcdcdc"
+                   HasShadow="True"
+                   Opacity="0.90">
+
+                <VerticalStackLayout Spacing="20">
+
+                    <Label Text="BeautyShop"
+                           FontSize="32"
+                           FontAttributes="Bold"
+                           TextColor="#2e2e2e"
+                           HorizontalOptions="Center"
+                           FontFamily="Sans-Serif" />
+
+                    <Label Text="Добро пожаловать!"
+                           FontSize="18"
+                           TextColor="OliveDrab"
+                           HorizontalOptions="Center"
+                           FontFamily="Sans-Serif"/>
+
+                    <Frame BackgroundColor="#f5f5f5"
+                           BorderColor="Transparent"
+                           CornerRadius="10"
+                           Padding="10"
+                           HasShadow="False">
+                        <Entry x:Name="UsernameEntry"
+                               Placeholder="Логин"
+                               BackgroundColor="Transparent"
+                               TextColor="Black"
+                               PlaceholderColor="Gray"
+                               FontFamily="Sans-Serif"/>
+                    </Frame>
+
+                    <Frame BackgroundColor="#f5f5f5"
+                           BorderColor="Transparent"
+                           CornerRadius="10"
+                           Padding="10"
+                           HasShadow="False">
+                        <Entry x:Name="PasswordEntry"
+                               Placeholder="Пароль"
+                               IsPassword="True"
+                               BackgroundColor="Transparent"
+                               TextColor="Black"
+                               PlaceholderColor="Gray"
+                               FontFamily="Sans-Serif"/>
+                    </Frame>
+
+                    <Button Text="Войти"
+                            Clicked="OnLoginClicked"
+                            BackgroundColor="OliveDrab"
+                            TextColor="White"
+                            FontFamily="Sans-Serif"
+                            FontAttributes="Bold"
+                            CornerRadius="10"
+                            HeightRequest="50"
+                            Margin="0,10,0,0"/>
+
+                    <Button Text="Нет аккаунта? Регистрация"
+                            Clicked="OnRegisterRedirect"
+                            BackgroundColor="Transparent"
+                            TextColor="Black"
+                            FontFamily="Sans-Serif"
+                            FontSize="14"
+                            Margin="0,5,0,0"/>
+
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+
+    </Grid>
+
 </ContentPage>

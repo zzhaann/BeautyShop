@@ -2,7 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BeautyShop.Pages.AddReviewPage"
              Title="Оставить отзыв">
-
+  
     <VerticalStackLayout Padding="20" Spacing="15">
         <Label Text="Оценка (1-5)" />
         <Entry x:Name="RatingEntry" Keyboard="Numeric" Placeholder="Например: 5" />
