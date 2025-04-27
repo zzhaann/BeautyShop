@@ -48,19 +48,5 @@ public partial class ReviewsPage : ContentPage
             await DisplayAlert("Нет отзывов", "Для этой услуги пока нет отзывов.", "ОК");
     }
 
-    private async void OnDeleteReviewClicked(object sender, EventArgs e)
-    {
-        if ((sender as Button)?.BindingContext is Review review)
-        {
-            bool confirm = await DisplayAlert("Удалить отзыв?",
-                $"Удалить отзыв пользователя: {review.Username}?", "Да", "Нет");
 
-            if (confirm)
-            {
-                await _db.DeleteReviewAsync(review.Id);
-                await DisplayAlert("Готово", "Отзыв удалён.", "ОК");
-                await RefreshReviews();
-            }
-        }
-    }
 }

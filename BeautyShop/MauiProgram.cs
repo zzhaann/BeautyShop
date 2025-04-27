@@ -1,6 +1,7 @@
 ﻿using BeautyShop.Pages;
 using BeautyShop.Services;
 using Microsoft.Extensions.Logging;
+using CommunityToolkit.Maui;
 
 namespace BeautyShop;
 
@@ -11,7 +12,8 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
-			.ConfigureFonts(fonts =>
+            .UseMauiCommunityToolkit()
+            .ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
@@ -19,7 +21,7 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<DatabaseService>();
         builder.Services.AddSingleton<CartService>();
-        builder.Services.AddSingleton<AppointmentCartPage>();
+       
         builder.Services.AddSingleton<OrderHistoryPage>();
         builder.Services.AddSingleton<FavoritesPage>();
 
@@ -35,9 +37,10 @@ public static class MauiProgram
         builder.Services.AddSingleton<EditServicePage>();
         builder.Services.AddSingleton<AllReviewsPage>();
         builder.Services.AddSingleton<WelcomePage>();
+        builder.Services.AddSingleton<ClientsPage>();
 
-
-
+        builder.Services.AddSingleton<CartPage>();
+        builder.Services.AddSingleton<AdminOrdersPage>();
 
 
 

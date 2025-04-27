@@ -29,7 +29,7 @@ public partial class AddReviewPage : ContentPage
             ServiceId = ServiceId,
             Rating = rating,
             Comment = CommentEditor.Text,
-            Username = Preferences.Get("user_name", "Клиент"), // если есть сохранение имени
+            Username = Preferences.Get("user_name", "Клиент"), 
             Date = DateTime.Now
         };
 

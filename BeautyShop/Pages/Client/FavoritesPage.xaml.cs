@@ -11,15 +11,6 @@ public partial class FavoritesPage : ContentPage
     {
         InitializeComponent();
         _db = db;
-        LoadFavorites();
-    }
-
-    private async void LoadFavorites()
-    {
-        var favorites = await _db.GetFavoritesAsync();
-        FavoritesList.ItemsSource = favorites;
-        if (favorites.Count == 0)
-            await DisplayAlert("Пусто", "Пока ничего в избранном", "ОК");
     }
 
     protected override void OnAppearing()
@@ -28,6 +19,22 @@ public partial class FavoritesPage : ContentPage
         LoadFavorites();
     }
 
+    private async void LoadFavorites()
+    {
+        var favorites = await _db.GetFavoritesAsync();
+        FavoritesCollectionView.ItemsSource = favorites;
 
+        if (favorites.Count == 0)
+            await DisplayAlert("Пусто", "Пока ничего в избранном", "ОК");
+    }
 
+    private async void OnRemoveFromFavoritesClicked(object sender, EventArgs e)
+    {
+        if ((sender as Button)?.BindingContext is Service service)
+        {
+            await _db.RemoveFromFavoritesAsync(service.Id);
+            await DisplayAlert("Успешно", "Услуга удалена из избранного.", "ОК");
+            LoadFavorites(); // Обновить список после удаления
+        }
+    }
 }

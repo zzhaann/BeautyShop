@@ -7,6 +7,8 @@ public partial class UserHomePage : ContentPage
         InitializeComponent();
     }
 
+
+
     private async void OnViewServicesClicked(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync("ServicesPage");
@@ -16,6 +18,18 @@ public partial class UserHomePage : ContentPage
     {
         await Shell.Current.GoToAsync("FavoritesPage");
     }
+
+    private async void OnCardClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("CartPage");
+    }
+
+
+    private async void OnHistoryClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("OrderHistoryPage");
+    }
+
 
 
     private async void OnLogoutClicked(object sender, EventArgs e)

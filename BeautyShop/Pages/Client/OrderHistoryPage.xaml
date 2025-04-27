@@ -1,0 +1,31 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BeautyShop.Pages.OrderHistoryPage"
+             Title="История заказов">
+
+    <ContentPage.Content>
+        <VerticalStackLayout Padding="10">
+            <Label Text="История заказов" 
+                   FontSize="24" 
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Margin="0,10" />
+
+            <CollectionView x:Name="OrderHistoryCollectionView">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Margin="5" Padding="10" BorderColor="Gray" CornerRadius="10">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding FileName}" FontSize="18" />
+                                <Label Text="{Binding CreatedAt, StringFormat='Дата: {0:dd.MM.yyyy HH:mm}'}" FontSize="14" TextColor="Gray" />
+                                <Button Text="📄 Открыть чек" Clicked="OnOpenOrderClicked" />
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

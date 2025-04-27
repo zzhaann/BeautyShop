@@ -1,0 +1,69 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BeautyShop.Pages.ServicesPage"
+             Title="Услуги">
+
+    <Grid RowDefinitions="Auto,*" Padding="10">
+
+        
+
+
+        <CollectionView x:Name="ServicesList" Grid.Row="1">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="5" Padding="10" BorderColor="LightGray" CornerRadius="15" HasShadow="True">
+                        <VerticalStackLayout Spacing="8">
+
+                            <Image Source="{Binding Service.ImagePath}" HeightRequest="150" Aspect="AspectFill" />
+
+                            <Label Text="{Binding Service.Title}" 
+                                   FontAttributes="Bold" 
+                                   FontSize="20"
+                                   HorizontalOptions="Center" />
+
+                            <Label Text="{Binding Rating, StringFormat='⭐ Рейтинг: {0:F1}'}" 
+                                   FontSize="14" 
+                                   TextColor="Orange"
+                                   HorizontalOptions="Center" />
+
+                            <Label Text="{Binding Service.Description}" 
+                                   FontSize="14"
+                                   HorizontalOptions="Center" />
+
+                            <Label Text="{Binding Service.Price, StringFormat='Цена: {0} ₸'}" 
+                                   FontSize="16" 
+                                   FontAttributes="Bold"
+                                   HorizontalOptions="Center" />
+
+                            <Button Text="➕ В корзину" 
+                                    Clicked="OnAddToCartClicked"
+                                    BackgroundColor="#6200EE"
+                                    TextColor="White"
+                                    CornerRadius="10" />
+
+                            <Button Text="⭐ В избранное" 
+                                    Clicked="OnAddToFavoritesClicked"
+                                    BackgroundColor="#03DAC6"
+                                    TextColor="Black"
+                                    CornerRadius="10" />
+
+                            <Button Text="💬 Оставить отзыв" 
+                                    Clicked="OnLeaveReviewClicked"
+                                    BackgroundColor="#FF9800"
+                                    TextColor="White"
+                                    CornerRadius="10" />
+
+                            <Button Text="📋 Смотреть отзывы" 
+                                    Clicked="OnViewReviewsClicked"
+                                    BackgroundColor="#8BC34A"
+                                    TextColor="White"
+                                    CornerRadius="10" />
+
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </Grid>
+</ContentPage>

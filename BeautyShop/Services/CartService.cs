@@ -1,12 +1,13 @@
-﻿using BeautyShop.Models;
+﻿using System.Collections.ObjectModel;
+using BeautyShop.Models;
 
 namespace BeautyShop.Services
 {
     public class CartService
     {
-        private List<AppointmentCartItem> _cartItems = new();
+        private ObservableCollection<AppointmentCartItem> _cartItems = new();
 
-        public List<AppointmentCartItem> GetCart() => _cartItems;
+        public ObservableCollection<AppointmentCartItem> GetCart() => _cartItems;
 
         public void AddToCart(AppointmentCartItem item)
         {

@@ -16,7 +16,7 @@
     <ShellContent Route="AdminHomePage" ContentTemplate="{DataTemplate pages:AdminHomePage}" />
     <ShellContent Route="ServicesPage" ContentTemplate="{DataTemplate pages:ServicesPage}" />
     <ShellContent Route="AddServicePage" ContentTemplate="{DataTemplate pages:AddServicePage}" />
-    <ShellContent Route="AppointmentCartPage" ContentTemplate="{DataTemplate pages:AppointmentCartPage}" />
+   
     <ShellContent Route="OrderHistoryPage" ContentTemplate="{DataTemplate pages:OrderHistoryPage}" />
     <ShellContent Route="FavoritesPage" ContentTemplate="{DataTemplate pages:FavoritesPage}" />
     <ShellContent Route="AddReviewPage" ContentTemplate="{DataTemplate pages:AddReviewPage}" />
@@ -25,9 +25,9 @@
     <ShellContent Route="EditServicePage" ContentTemplate="{DataTemplate pages:EditServicePage}" />
     <ShellContent Route="AllReviewsPage" ContentTemplate="{DataTemplate pages:AllReviewsPage}" />
     <ShellContent Route="WelcomePage" ContentTemplate="{DataTemplate pages:WelcomePage}" />
-
-
-
+    <ShellContent Route="ClientsPage" ContentTemplate="{DataTemplate pages:ClientsPage}" />
+    <ShellContent Route="CartPage" ContentTemplate="{DataTemplate pages:CartPage}" />
+    <ShellContent Route="AdminOrdersPage" ContentTemplate="{DataTemplate pages:AdminOrdersPage}" />
 
 
 </Shell>
