@@ -2,141 +2,99 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BeautyShop.Pages.UserHomePage"
-             Title="Главная (Клиент)">
+             Title="Главная (Клиент)"
+             BackgroundColor="#fff">
 
-    <Grid>
-        <Image Source="https://i.pinimg.com/736x/a7/03/f6/a703f6aa2e1ac949ce797ac689607aac.jpg" 
-               Aspect="AspectFill" 
-               Opacity="0.6"/>
+    <Grid RowDefinitions="Auto, *, Auto">
 
-        <VerticalStackLayout Padding="20" Spacing="40">
-            <Label Text="Добро пожаловать в BeautyShop!" 
-                   FontSize="30" 
-                   TextColor="OliveDrab"
-                   FontAttributes="Bold"
-                   HorizontalOptions="Center"
-                   Margin="0,0,0,20"/>
+        <!-- Карусель наверху -->
+        <CarouselView x:Name="PromoCarousel"
+              Grid.Row="0"
+              HeightRequest="180"
+              Loop="True"
+              IsBounceEnabled="False"
+              Margin="10,10,10,0">
+            <CarouselView.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>promo1.jpg</x:String>
+                    <x:String>promo2.jpg</x:String>
+                    <x:String>promo3.jpg</x:String>
+                </x:Array>
+            </CarouselView.ItemsSource>
 
-            <Grid ColumnDefinitions="*,*" 
-                  RowDefinitions="*,*" 
-                  ColumnSpacing="15" 
-                  RowSpacing="15">
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <Image Aspect="AspectFill" Source="{Binding}" />
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
 
-                
-                <Frame Grid.Row="0" Grid.Column="0"
-                       CornerRadius="15" 
-                       Padding="15"
-                       BackgroundColor="White"
-                       HasShadow="True">
-                    <VerticalStackLayout Spacing="10" HorizontalOptions="Center">
-                        <Image Source="https://cdn-icons-png.flaticon.com/512/5066/5066736.png"
-                               HeightRequest="40"
-                               WidthRequest="40"
-                               HorizontalOptions="Center"/>
-                        <Button Text="Услуги" 
-                                Clicked="OnViewServicesClicked"
-                                BackgroundColor="Transparent"
-                                TextColor="DarkOliveGreen"
-                                FontAttributes="Bold"/>
-                    </VerticalStackLayout>
-                </Frame>
+        <!-- Приветствие посередине -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="20" Spacing="20" VerticalOptions="Center">
+                <Label Text="Добро пожаловать в BeautyShop!" 
+                       FontSize="26" 
+                       TextColor="OliveDrab"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"/>
+            </VerticalStackLayout>
+        </ScrollView>
 
-                
-                <Frame Grid.Row="0" Grid.Column="1"
-                       CornerRadius="15" 
-                       Padding="15"
-                       BackgroundColor="White"
-                       HasShadow="True">
-                    <VerticalStackLayout Spacing="10" HorizontalOptions="Center">
-                        <Image Source="https://cdn-icons-png.flaticon.com/512/1374/1374128.png"
-                               HeightRequest="40"
-                               WidthRequest="40"
-                               HorizontalOptions="Center"/>
-                        <Button Text="Корзина" 
-                                Clicked="OnCardClicked"
-                                BackgroundColor="Transparent"
-                                TextColor="DarkOliveGreen"
-                                FontAttributes="Bold"/>
-                    </VerticalStackLayout>
-                </Frame>
+        <!-- Меню снизу -->
+        <Grid Grid.Row="2" Padding="10" BackgroundColor="#FFF5EE">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-                
-                <Frame Grid.Row="1" Grid.Column="0"
-                       CornerRadius="15" 
-                       Padding="15"
-                       BackgroundColor="White"
-                       HasShadow="True">
-                    <VerticalStackLayout Spacing="10" HorizontalOptions="Center">
-                        <Image Source="https://cdn-icons-png.flaticon.com/512/263/263075.png"
-                               HeightRequest="40"
-                               WidthRequest="40"
-                               HorizontalOptions="Center"/>
-                        <Button Text="Избранное" 
-                                Clicked="OnFavoritesClicked"
-                                BackgroundColor="Transparent"
-                                TextColor="DarkOliveGreen"
-                                FontAttributes="Bold"/>
-                    </VerticalStackLayout>
-                </Frame>
-
-                
-                <Frame Grid.Row="1" Grid.Column="1"
-                       CornerRadius="15" 
-                       Padding="15"
-                       BackgroundColor="White"
-                       HasShadow="True">
-                    <VerticalStackLayout Spacing="10" HorizontalOptions="Center">
-                        <Image Source="https://cdn-icons-png.flaticon.com/512/565/565584.png"
-                               HeightRequest="40"
-                               WidthRequest="40"
-                               HorizontalOptions="Center"/>
-                        <Button Text="История" 
-                                Clicked="OnHistoryClicked"
-                                BackgroundColor="Transparent"
-                                TextColor="DarkOliveGreen"
-                                FontAttributes="Bold"/>
-                    </VerticalStackLayout>
-                </Frame>
-
-            </Grid>
-           
-            <VerticalStackLayout Padding="0" Spacing="15" VerticalOptions="Center">
-                <Button Text="🚪 Выйти из аккаунта"
-                        Clicked="OnLogoutClicked"
-                        BackgroundColor="DarkRed"
-                        TextColor="White" 
-                        FontAttributes="Bold"/>
-
-                <Button Text="📅 Посмотреть услуги" 
+            <!-- Кнопка 1 -->
+            <VerticalStackLayout Grid.Column="0" HorizontalOptions="Center">
+                <Image Source="services_icon.png" HeightRequest="32" WidthRequest="32" />
+                <Button Text="Услуги" 
                         Clicked="OnViewServicesClicked"
-                        BackgroundColor="White"
+                        BackgroundColor="Transparent"
                         TextColor="DarkOliveGreen"
-                        FontAttributes="Bold"/>
-
-                <Button Text="🛍️ Корзина" 
-                        Clicked="OnCardClicked"  
-                        BindingContext="{Binding .}"
-                        BackgroundColor="White"
-                        TextColor="DarkOliveGreen"
-                        FontAttributes="Bold"/>
-
-                <Button Text="🌟 Избранное" 
-                        Clicked="OnFavoritesClicked"  
-                        BindingContext="{Binding .}"
-                        BackgroundColor="White"
-                        TextColor="DarkOliveGreen"
-                        FontAttributes="Bold"/>
-
-                <Button Text="📖 История записей" 
-                        Clicked="OnHistoryClicked"  
-                        BindingContext="{Binding .}"
-                        BackgroundColor="White"
-                        TextColor="DarkOliveGreen"
-                        FontAttributes="Bold"/>
+                        FontAttributes="Bold"
+                        Padding="0" />
             </VerticalStackLayout>
 
-        </VerticalStackLayout>
-        
+            <!-- Кнопка 2 -->
+            <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center">
+                <Image Source="cart_icon.png" HeightRequest="32" WidthRequest="32" />
+                <Button Text="Корзина" 
+                        Clicked="OnCardClicked"
+                        BackgroundColor="Transparent"
+                        TextColor="DarkOliveGreen"
+                        FontAttributes="Bold"
+                        Padding="0" />
+            </VerticalStackLayout>
+
+            <!-- Кнопка 3 -->
+            <VerticalStackLayout Grid.Column="2" HorizontalOptions="Center">
+                <Image Source="favorites_icon.png" HeightRequest="32" WidthRequest="32" />
+                <Button Text="Избранное" 
+                        Clicked="OnFavoritesClicked"
+                        BackgroundColor="Transparent"
+                        TextColor="DarkOliveGreen"
+                        FontAttributes="Bold"
+                        Padding="0" />
+            </VerticalStackLayout>
+
+            <!-- Кнопка 4 -->
+            <VerticalStackLayout Grid.Column="3" HorizontalOptions="Center">
+                <Image Source="history_icon.png" HeightRequest="32" WidthRequest="32" />
+                <Button Text="История" 
+                        Clicked="OnHistoryClicked"
+                        BackgroundColor="Transparent"
+                        TextColor="DarkOliveGreen"
+                        FontAttributes="Bold"
+                        Padding="0" />
+            </VerticalStackLayout>
+
+        </Grid>
+
     </Grid>
-    
+
 </ContentPage>
