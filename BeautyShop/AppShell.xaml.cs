@@ -28,6 +28,7 @@ namespace BeautyShop
             Routing.RegisterRoute("ClientsPage", typeof(ClientsPage));
             Routing.RegisterRoute("CartPage", typeof(CartPage));
             Routing.RegisterRoute("AdminOrdersPage", typeof(AdminOrdersPage));
+            
         }
     }
 }

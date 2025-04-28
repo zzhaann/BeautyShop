@@ -10,6 +10,6 @@
         <Label Text="Комментарий" />
         <Editor x:Name="CommentEditor" Placeholder="Напишите ваш отзыв..." AutoSize="TextChanges"/>
 
-        <Button Text="✅ Отправить отзыв" Clicked="OnSubmitClicked" BackgroundColor="#4CAF50" TextColor="White"/>
+        <Button Text=" Отправить отзыв" Clicked="OnSubmitClicked" BackgroundColor="#F48FB1" TextColor="White"/>
     </VerticalStackLayout>
 </ContentPage>
