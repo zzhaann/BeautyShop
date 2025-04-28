@@ -1,26 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BeautyShop.Pages.EditServicePage"
-             Title="Редактирование услуги">
+             Title="Редактирование услуги"
+             BackgroundColor="#F5F5F5">
 
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="15">
+        <VerticalStackLayout Padding="25" Spacing="20">
 
-            <Label Text="Название услуги" />
-            <Entry x:Name="TitleEntry" Placeholder="Введите название" />
+            <Label Text="Редактирование услуги" 
+                   FontSize="28" 
+                   FontAttributes="Bold"
+                   TextColor="Maroon"
+                   HorizontalOptions="Center" />
 
-            <Label Text="Описание" />
-            <Editor x:Name="DescriptionEditor" Placeholder="Введите описание" AutoSize="TextChanges" />
+            <!-- Название услуги -->
+            <Label Text="Название услуги" FontSize="16" TextColor="#333" />
+            <Frame CornerRadius="10" Padding="5" BackgroundColor="White" BorderColor="#DDD">
+                <Entry x:Name="TitleEntry" Placeholder="Введите название" FontSize="16" />
+            </Frame>
 
-            <Label Text="Цена" />
-            <Entry x:Name="PriceEntry" Keyboard="Numeric" />
+            <!-- Описание -->
+            <Label Text="Описание" FontSize="16" TextColor="#333" />
+            <Frame CornerRadius="10" Padding="5" BackgroundColor="White" BorderColor="#DDD">
+                <Editor x:Name="DescriptionEditor" Placeholder="Введите описание" AutoSize="TextChanges" FontSize="16" />
+            </Frame>
 
-            <Label Text="Изображение" />
-            <Image x:Name="ServiceImage" HeightRequest="300" Aspect="AspectFill" />
-            <Button Text=" Заменить изображение" Clicked="OnPickImageClicked" />
+            <!-- Цена -->
+            <Label Text="Цена" FontSize="16" TextColor="#333" />
+            <Frame CornerRadius="10" Padding="5" BackgroundColor="White" BorderColor="#DDD">
+                <Entry x:Name="PriceEntry" Keyboard="Numeric" Placeholder="Введите цену" FontSize="16" />
+            </Frame>
 
-            <Button Text=" Сохранить изменения" Clicked="OnSaveClicked"
-                    BackgroundColor="#4CAF50" TextColor="White" />
+            <!-- Изображение -->
+            <Label Text="Изображение" FontSize="16" TextColor="#333" />
+            <Frame CornerRadius="15" Padding="5" BackgroundColor="White" BorderColor="#DDD">
+                <Image x:Name="ServiceImage" HeightRequest="250" Aspect="AspectFill" />
+            </Frame>
+
+            <Button Text="Заменить изображение" 
+                    Clicked="OnPickImageClicked"
+                    BackgroundColor="Maroon"
+                    TextColor="White"
+                    CornerRadius="20"
+                    HeightRequest="50"
+                    FontAttributes="Bold"/>
+
+            <!-- Сохранить -->
+            <Button Text="Сохранить изменения" 
+                    Clicked="OnSaveClicked"
+                    BackgroundColor="LightGray"
+                    TextColor="DarkSlateGray"
+                    CornerRadius="20"
+                    HeightRequest="50"
+                    FontAttributes="Bold"/>
+
         </VerticalStackLayout>
     </ScrollView>
+
 </ContentPage>

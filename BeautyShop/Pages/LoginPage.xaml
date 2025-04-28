@@ -5,7 +5,7 @@
 
     <Grid>
 
-        <Image Source="https://i.pinimg.com/736x/6a/97/94/6a979455e016031c93e4b141a10f43d1.jpg"
+        <Image Source="https://i.pinimg.com/736x/64/fc/0a/64fc0ad256dd4d530c23d7995daf2903.jpg"
                Aspect="AspectFill"
                Opacity="0.9"
                IsEnabled="False" />
@@ -30,7 +30,7 @@
 
                     <Label Text="Добро пожаловать!"
                            FontSize="18"
-                           TextColor="OliveDrab"
+                           TextColor="Maroon"
                            HorizontalOptions="Center"
                            FontFamily="Sans-Serif"/>
 
@@ -63,7 +63,7 @@
 
                     <Button Text="Войти"
                             Clicked="OnLoginClicked"
-                            BackgroundColor="OliveDrab"
+                            BackgroundColor="Maroon"
                             TextColor="White"
                             FontFamily="Sans-Serif"
                             FontAttributes="Bold"

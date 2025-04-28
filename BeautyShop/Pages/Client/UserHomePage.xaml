@@ -29,19 +29,69 @@
             </CarouselView.ItemTemplate>
         </CarouselView>
 
-        <!-- Приветствие посередине -->
+        <!-- Основной контент: карточки + приветствие -->
         <ScrollView Grid.Row="1">
-            <VerticalStackLayout Padding="20" Spacing="20" VerticalOptions="Center">
-                <Label Text="Добро пожаловать в BeautyShop!" 
-                       FontSize="26" 
-                       TextColor="OliveDrab"
+            <VerticalStackLayout Padding="20" Spacing="20">
+
+                <Label Text="Популярные услуги"
+                       FontSize="22"
                        FontAttributes="Bold"
-                       HorizontalOptions="Center"/>
-            </VerticalStackLayout>
+                       TextColor="Maroon"
+                       HorizontalOptions="Center" />
+
+                <!-- Карточка 1 -->
+                <Frame CornerRadius="20"
+                       HasShadow="True"
+                       Padding="0"
+                       Margin="0,0,0,10"
+                       BackgroundColor="White">
+                    <Grid>
+                        <Image Source="https://i.pinimg.com/736x/98/7d/2e/987d2e94839921b5c32d66dc87111e91.jpg" Aspect="AspectFill" HeightRequest="200"/>
+                        <BoxView BackgroundColor="#80000000" />
+                        <VerticalStackLayout Padding="15" VerticalOptions="End">
+                            <Label Text="Маникюр" FontSize="22" TextColor="White" FontAttributes="Bold" />
+                            <Label Text="Красота и уход за вашими руками" FontSize="14" TextColor="White" />
+                        </VerticalStackLayout>
+                    </Grid>
+                </Frame>
+
+                <!-- Карточка 2 -->
+                <Frame CornerRadius="20"
+                       HasShadow="True"
+                       Padding="0"
+                       Margin="0,0,0,10"
+                       BackgroundColor="White">
+                    <Grid>
+                        <Image Source="https://i.pinimg.com/736x/32/22/24/322224f51e2d40e65ab270450bc0399e.jpg" Aspect="AspectFill" HeightRequest="200"/>
+                        <BoxView BackgroundColor="#80000000" />
+                        <VerticalStackLayout Padding="15" VerticalOptions="End">
+                            <Label Text="Стрижка" FontSize="22" TextColor="White" FontAttributes="Bold" />
+                            <Label Text="Модные причёски для всех" FontSize="14" TextColor="White" />
+                        </VerticalStackLayout>
+                    </Grid>
+                </Frame>
+
+                <!-- Карточка 3 -->
+                <Frame CornerRadius="20"
+                       HasShadow="True"
+                       Padding="0"
+                       Margin="0,0,0,10"
+                       BackgroundColor="White">
+                    <Grid>
+                        <Image Source="https://i.pinimg.com/736x/b5/ec/fc/b5ecfc8ec42a841ed99be2557e27cb3e.jpg" Aspect="AspectFill" HeightRequest="200"/>
+                        <BoxView BackgroundColor="#80000000" />
+                        <VerticalStackLayout Padding="15" VerticalOptions="End">
+                            <Label Text="Макияж" FontSize="22" TextColor="White" FontAttributes="Bold" />
+                            <Label Text="Идеальный образ на любое событие" FontSize="14" TextColor="White" />
+                        </VerticalStackLayout>
+                    </Grid>
+                </Frame>
+
+             </VerticalStackLayout>
         </ScrollView>
 
         <!-- Меню снизу -->
-        <Grid Grid.Row="2" Padding="10" BackgroundColor="#FFF5EE">
+        <Grid Grid.Row="2" Padding="10" BackgroundColor="LightGray">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -51,44 +101,44 @@
 
             <!-- Кнопка 1 -->
             <VerticalStackLayout Grid.Column="0" HorizontalOptions="Center">
-                <Image Source="services_icon.png" HeightRequest="32" WidthRequest="32" />
+                <Image Source="service_icon.png" HeightRequest="32" WidthRequest="32" />
                 <Button Text="Услуги" 
                         Clicked="OnViewServicesClicked"
                         BackgroundColor="Transparent"
-                        TextColor="DarkOliveGreen"
+                        TextColor="Black"
                         FontAttributes="Bold"
                         Padding="0" />
             </VerticalStackLayout>
 
             <!-- Кнопка 2 -->
             <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center">
-                <Image Source="cart_icon.png" HeightRequest="32" WidthRequest="32" />
+                <Image Source="menu2.png" HeightRequest="32" WidthRequest="32" />
                 <Button Text="Корзина" 
                         Clicked="OnCardClicked"
                         BackgroundColor="Transparent"
-                        TextColor="DarkOliveGreen"
+                        TextColor="Black"
                         FontAttributes="Bold"
                         Padding="0" />
             </VerticalStackLayout>
 
             <!-- Кнопка 3 -->
             <VerticalStackLayout Grid.Column="2" HorizontalOptions="Center">
-                <Image Source="favorites_icon.png" HeightRequest="32" WidthRequest="32" />
+                <Image Source="menu1.png" HeightRequest="32" WidthRequest="32" />
                 <Button Text="Избранное" 
                         Clicked="OnFavoritesClicked"
                         BackgroundColor="Transparent"
-                        TextColor="DarkOliveGreen"
+                        TextColor="Black"
                         FontAttributes="Bold"
                         Padding="0" />
             </VerticalStackLayout>
 
             <!-- Кнопка 4 -->
             <VerticalStackLayout Grid.Column="3" HorizontalOptions="Center">
-                <Image Source="history_icon.png" HeightRequest="32" WidthRequest="32" />
+                <Image Source="menu3.png" HeightRequest="32" WidthRequest="32" />
                 <Button Text="История" 
                         Clicked="OnHistoryClicked"
                         BackgroundColor="Transparent"
-                        TextColor="DarkOliveGreen"
+                        TextColor="Black"
                         FontAttributes="Bold"
                         Padding="0" />
             </VerticalStackLayout>

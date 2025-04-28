@@ -19,9 +19,10 @@
                                 <Label Text="{Binding Price, StringFormat='Цена: {0} ₸'}" FontSize="14" />
 
                                 <HorizontalStackLayout Spacing="10" Padding="3">
-                                    <Button Text=" Редактировать" Clicked="OnEditClicked" />
+                                    <Button Text=" Редактировать" Clicked="OnEditClicked"
+                                             BackgroundColor="#c992a1" TextColor="White"/>
                                     <Button Text=" Удалить" Clicked="OnDeleteClicked"
-                                            BackgroundColor="Crimson" TextColor="White" />
+                                            BackgroundColor="#c9c9c9" TextColor="Black" />
                                 </HorizontalStackLayout>
                             </VerticalStackLayout>
                         </Frame>

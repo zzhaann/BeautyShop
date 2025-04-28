@@ -1,32 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BeautyShop.Pages.AddServicePage"
              Title="Добавить услугу"
-             BackgroundColor="White">
+             BackgroundColor="#F5F5F5">
 
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="15">
+        <VerticalStackLayout Padding="25" Spacing="20">
 
-            <Label Text="Название услуги" />
-            <Entry x:Name="TitleEntry" Placeholder="Введите название" />
+            <Label Text="Добавление услуги"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   TextColor="Maroon"
+                   HorizontalOptions="Center" />
 
-            <Label Text="Описание" />
-            <Editor x:Name="DescriptionEditor" Placeholder="Введите описание" AutoSize="TextChanges" />
+            <!-- Название услуги -->
+            <Label Text="Название услуги" FontSize="16" TextColor="#333" />
+            <Frame CornerRadius="12" BackgroundColor="White" BorderColor="#DDD" Padding="5">
+                <Entry x:Name="TitleEntry" Placeholder="Введите название" FontSize="16" />
+            </Frame>
 
-            <Label Text="Цена (₸)" />
-            <Entry x:Name="PriceEntry" Keyboard="Numeric" Placeholder="Введите цену" />
+            <!-- Описание услуги -->
+            <Label Text="Описание" FontSize="16" TextColor="#333" />
+            <Frame CornerRadius="12" BackgroundColor="White" BorderColor="#DDD" Padding="5">
+                <Editor x:Name="DescriptionEditor"
+                        Placeholder="Введите описание"
+                        FontSize="16"
+                        AutoSize="TextChanges" />
+            </Frame>
 
-            <Label Text="Изображение" />
-            <Image x:Name="ServiceImage" HeightRequest="300" Aspect="AspectFill" BackgroundColor="#EEE" />
+            <!-- Цена услуги -->
+            <Label Text="Цена (₸)" FontSize="16" TextColor="#333" />
+            <Frame CornerRadius="12" BackgroundColor="White" BorderColor="#DDD" Padding="5">
+                <Entry x:Name="PriceEntry"
+                       Placeholder="Введите цену"
+                       FontSize="16"
+                       Keyboard="Numeric" />
+            </Frame>
 
-            <Button Text=" Загрузить фото"
-                    Clicked="OnPickImageClicked" />
+            <!-- Изображение услуги -->
+            <Label Text="Изображение" FontSize="16" TextColor="#333" />
+            <Frame CornerRadius="15" BackgroundColor="White" BorderColor="#DDD" Padding="5">
+                <Image x:Name="ServiceImage"
+                       HeightRequest="250"
+                       Aspect="AspectFill"
+                       BackgroundColor="#EEE" />
+            </Frame>
 
-            <Button Text=" Сохранить"
+            <!-- Кнопка Загрузить фото -->
+            <Button Text="Загрузить фото"
+                    Clicked="OnPickImageClicked"
+                    BackgroundColor="#c992a1"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    CornerRadius="20"
+                    HeightRequest="50" />
+
+            <!-- Кнопка Сохранить -->
+            <Button Text="Сохранить"
                     Clicked="OnSaveClicked"
-                    BackgroundColor="#4CAF50"
-                    TextColor="White" />
+                    BackgroundColor="#c9c9c9"
+                    TextColor="Black"
+                    FontAttributes="Bold"
+                    CornerRadius="20"
+                    HeightRequest="50" />
 
         </VerticalStackLayout>
     </ScrollView>
+
 </ContentPage>
