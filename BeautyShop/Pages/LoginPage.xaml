@@ -10,6 +10,7 @@
                Opacity="0.9"
                IsEnabled="False" />
 
+        <!-- Название услуги1 -->
         <VerticalStackLayout Padding="30" Spacing="20" VerticalOptions="Center">
 
             <Frame BackgroundColor="White"

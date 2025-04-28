@@ -4,6 +4,7 @@
              Title="Мои услуги"
              >
 
+    <!-- Название услуги1 -->
     <ScrollView>
         <VerticalStackLayout Padding="10" Spacing="10">
             <Label Text=" Услуги, добавленные вами" FontSize="20" FontAttributes="Bold" />

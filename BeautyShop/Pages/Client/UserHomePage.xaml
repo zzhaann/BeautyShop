@@ -7,7 +7,7 @@
 
     <Grid RowDefinitions="Auto, *, Auto">
 
-        <!-- Карусель наверху -->
+        <!-- Карусель наверху1 -->
         <CarouselView x:Name="PromoCarousel"
               Grid.Row="0"
               HeightRequest="180"

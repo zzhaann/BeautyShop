@@ -14,7 +14,7 @@
                    TextColor="Maroon"
                    HorizontalOptions="Center" />
 
-            <!-- Название услуги -->
+            <!-- Название услуги1 -->
             <Label Text="Название услуги" FontSize="16" TextColor="#333" />
             <Frame CornerRadius="10" Padding="5" BackgroundColor="White" BorderColor="#DDD">
                 <Entry x:Name="TitleEntry" Placeholder="Введите название" FontSize="16" />

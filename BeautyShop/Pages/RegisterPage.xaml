@@ -9,6 +9,7 @@
                Opacity="0.9" 
                IsOpaque="True"/>
 
+        <!-- Название услуги1 -->
         <Frame BackgroundColor="White"
                CornerRadius="20"
                Padding="30"

@@ -12,7 +12,8 @@
 
         <VerticalStackLayout Padding="20" Spacing="40" VerticalOptions="Start" HorizontalOptions="Center">
 
-            
+
+            <!-- Название услуги1 -->
             <Label Text="Добро пожаловать в BeautyShop!"
                    FontSize="28"
                    FontAttributes="Bold"
