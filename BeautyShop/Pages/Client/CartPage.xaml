@@ -1,44 +1,69 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BeautyShop.Pages.CartPage"
-             Title="Корзина">
+             Title="Корзина"
+             BackgroundColor="#F8F8F8">
 
     <ContentPage.Content>
-        <VerticalStackLayout Padding="10" Spacing="10">
+        <VerticalStackLayout Padding="20" Spacing="20">
 
-            <Label Text="Моя корзина" 
-                   FontSize="24" 
+            <Label Text="🛒 Моя корзина" 
+                   FontSize="28" 
                    FontAttributes="Bold"
+                   TextColor="#333"
                    HorizontalOptions="Center" />
 
             <CollectionView x:Name="CartCollectionView"
                             ItemsLayout="VerticalList"
-                            SelectionMode="None">
+                            SelectionMode="None"
+                            HeightRequest="400">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame BorderColor="LightGray" CornerRadius="10" Padding="10" Margin="5">
-                            <VerticalStackLayout>
-                                <Label Text="{Binding Title}" FontSize="18" />
-                                <Label Text="{Binding Price, StringFormat='Цена: {0} ₸'}" FontSize="14" TextColor="Gray" />
+                        <Frame BorderColor="#E0E0E0"
+                               CornerRadius="15"
+                               Padding="15"
+                               Margin="5"
+                               BackgroundColor="White"
+                               HasShadow="True">
+                            <VerticalStackLayout Spacing="5">
+                                <Label Text="{Binding Title}" 
+                                       FontSize="20"
+                                       FontAttributes="Bold"
+                                       TextColor="#222" />
+                                <Label Text="{Binding Price, StringFormat='Цена: {0} ₸'}"
+                                       FontSize="16"
+                                       TextColor="#777" />
                             </VerticalStackLayout>
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <Label x:Name="TotalLabel"
-                   FontSize="18"
-                   FontAttributes="Bold"
-                   HorizontalOptions="Center" />
+            <Frame BackgroundColor="White"
+                   CornerRadius="15"
+                   Padding="15"
+                   HasShadow="True">
+                <Label x:Name="TotalLabel"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       TextColor="#333" />
+            </Frame>
 
             <Button Text="Оформить заказ"
-                    BackgroundColor="DarkGreen"
+                    BackgroundColor="#c992a1"
                     TextColor="White"
+                    CornerRadius="10"
+                    FontSize="18"
+                    HeightRequest="50"
                     Clicked="OnCheckoutClicked" />
 
             <Button Text="Очистить корзину"
-                    BackgroundColor="DarkRed"
-                    TextColor="White"
+                    BackgroundColor="LightGray"
+                    TextColor="Black"
+                    CornerRadius="10"
+                    FontSize="18"
+                    HeightRequest="50"
                     Clicked="OnClearCartClicked" />
 
         </VerticalStackLayout>

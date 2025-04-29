@@ -1,23 +1,26 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BeautyShop.Pages.ReviewsPage"
-             Title="Отзывы">
+             Title="Отзывы"
+             BackgroundColor="#F9F9F9">
 
     <ScrollView>
-        <VerticalStackLayout Padding="10" Spacing="10">
+        <VerticalStackLayout Padding="20" Spacing="20">
 
             <!-- Шапка с кнопкой назад и заголовком -->
-            <Grid ColumnDefinitions="Auto,*,Auto" Padding="0,0,0,10">
+            <Grid ColumnDefinitions="Auto,*,Auto" VerticalOptions="Center" Padding="0,10,0,20">
                 <ImageButton Source="back_icon.png"
                              BackgroundColor="Transparent"
-                             WidthRequest="30"
-                             HeightRequest="30"
+                             WidthRequest="40"
+                             HeightRequest="40"
+                             CornerRadius="20"
                              Clicked="OnBackClicked"
                              Grid.Column="0" />
 
                 <Label Text="Отзывы"
-                       FontSize="20"
+                       FontSize="26"
                        FontAttributes="Bold"
+                       TextColor="#333333"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"
                        Grid.Column="1" />
@@ -25,29 +28,52 @@
 
             <!-- Название услуги -->
             <Label x:Name="TitleLabel"
-                   FontSize="22"
+                   FontSize="24"
                    FontAttributes="Bold"
-                   HorizontalOptions="Center" />
+                   TextColor="#007ACC"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center"
+                   Margin="0,0,0,5"/>
 
             <!-- Описание услуги -->
             <Label x:Name="DescriptionLabel"
-                   FontSize="14"
-                   TextColor="Gray"
+                   FontSize="16"
+                   TextColor="#666666"
                    HorizontalOptions="Center"
-                   HorizontalTextAlignment="Center" />
+                   HorizontalTextAlignment="Center"
+                   Margin="0,0,0,20"/>
 
             <!-- Список отзывов -->
-            <CollectionView x:Name="ReviewList">
+            <CollectionView x:Name="ReviewList"
+                            EmptyView="Пока нет отзывов">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame Padding="10" Margin="5" BorderColor="LightGray" CornerRadius="10">
-                            <VerticalStackLayout>
-                                <Label Text="{Binding Username}" FontAttributes="Bold" FontSize="16" />
-                                <Label Text="{Binding Rating, StringFormat='⭐ Оценка: {0}'}" FontSize="14" />
-                                <Label Text="{Binding Comment}" FontSize="14" />
+                        <Frame Padding="15" Margin="0,10"
+                               CornerRadius="15"
+                               BorderColor="#E0E0E0"
+                               HasShadow="True"
+                               BackgroundColor="White">
+
+                            <VerticalStackLayout Spacing="8">
+                                <Label Text="{Binding Username}"
+                                       FontAttributes="Bold"
+                                       FontSize="18"
+                                       TextColor="#333333" />
+
+                                <Label Text="{Binding Rating, StringFormat='⭐ Оценка: {0}'}"
+                                       FontSize="16"
+                                       TextColor="#555555" />
+
+                                <Label Text="{Binding Comment}"
+                                       FontSize="14"
+                                       TextColor="#666666" />
+
                                 <Label Text="{Binding Date, StringFormat='🕓 {0:dd.MM.yyyy HH:mm}'}"
-                                       FontSize="12" TextColor="Gray" />
+                                       FontSize="12"
+                                       TextColor="Gray"
+                                       HorizontalOptions="End" />
                             </VerticalStackLayout>
+
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

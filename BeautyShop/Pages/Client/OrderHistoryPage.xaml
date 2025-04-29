@@ -1,31 +1,57 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BeautyShop.Pages.OrderHistoryPage"
-             Title="История заказов">
+             Title="История заказов"
+             BackgroundColor="#F9F9F9">
 
     <ContentPage.Content>
-        <VerticalStackLayout Padding="10">
-            <Label Text="История заказов" 
-                   FontSize="24" 
-                   FontAttributes="Bold"
-                   HorizontalOptions="Center"
-                   Margin="0,10" />
+        <ScrollView>
+            <VerticalStackLayout Padding="20" Spacing="15">
 
-            <CollectionView x:Name="OrderHistoryCollectionView">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Frame Margin="5" Padding="10" BorderColor="Gray" CornerRadius="10">
-                            <VerticalStackLayout>
-                                <Label Text="{Binding FileName}" FontSize="18" />
-                                <Label Text="{Binding CreatedAt, StringFormat='Дата: {0:dd.MM.yyyy HH:mm}'}" FontSize="14" TextColor="Gray" />
-                                <Button Text="📄 Открыть чек" Clicked="OnOpenOrderClicked" />
-                            </VerticalStackLayout>
-                        </Frame>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                <Label Text="История заказов" 
+                       FontSize="28" 
+                       FontAttributes="Bold"
+                       TextColor="#333333"
+                       HorizontalOptions="Center"
+                       Margin="0,20,0,10" />
 
-        </VerticalStackLayout>
+                <CollectionView x:Name="OrderHistoryCollectionView"
+                                EmptyView="Пока нет заказов">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Margin="0,10"
+                                   Padding="15"
+                                   CornerRadius="15"
+                                   HasShadow="True"
+                                   BackgroundColor="White"
+                                   BorderColor="#E0E0E0">
+
+                                <VerticalStackLayout Spacing="8">
+                                    <Label Text="{Binding FileName}" 
+                                           FontSize="20" 
+                                           FontAttributes="Bold"
+                                           TextColor="#007ACC" />
+
+                                    <Label Text="{Binding CreatedAt, StringFormat='Дата заказа: {0:dd.MM.yyyy HH:mm}'}" 
+                                           FontSize="14" 
+                                           TextColor="Gray" />
+
+                                    <Button Text="Открыть чек" 
+                                            Clicked="OnOpenOrderClicked"
+                                            BackgroundColor="#c992a1"
+                                            TextColor="White"
+                                            CornerRadius="10"
+                                            HeightRequest="40"
+                                            FontAttributes="Bold" />
+                                </VerticalStackLayout>
+
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </VerticalStackLayout>
+        </ScrollView>
     </ContentPage.Content>
 
 </ContentPage>

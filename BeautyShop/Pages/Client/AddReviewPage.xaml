@@ -1,15 +1,57 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BeautyShop.Pages.AddReviewPage"
-             Title="Оставить отзыв">
-  
-    <VerticalStackLayout Padding="20" Spacing="15">
-        <Label Text="Оценка (1-5)" />
-        <Entry x:Name="RatingEntry" Keyboard="Numeric" Placeholder="Например: 5" />
+             Title="Оставить отзыв"
+             BackgroundColor="#F9F9F9">
 
-        <Label Text="Комментарий" />
-        <Editor x:Name="CommentEditor" Placeholder="Напишите ваш отзыв..." AutoSize="TextChanges"/>
+    <ContentPage.Content>
+        <ScrollView>
+            <VerticalStackLayout Padding="20" Spacing="20">
 
-        <Button Text=" Отправить отзыв" Clicked="OnSubmitClicked" BackgroundColor="#F48FB1" TextColor="White"/>
-    </VerticalStackLayout>
+                <Label Text="Оставьте свой отзыв" 
+                       FontSize="28" 
+                       FontAttributes="Bold"
+                       TextColor="#333333"
+                       HorizontalOptions="Center"
+                       Margin="0,0,0,20"/>
+
+                <Label Text="Оценка (от 1 до 5)" 
+                       FontSize="16"
+                       TextColor="#666666"/>
+                <Frame Padding="0" BorderColor="#E0E0E0" CornerRadius="10">
+                    <Entry x:Name="RatingEntry"
+                           Keyboard="Numeric"
+                           Placeholder="Например: 5"
+                           FontSize="16"
+                           TextColor="#333333"
+                           BackgroundColor="White"
+                           Margin="10,0"/>
+                </Frame>
+
+                <Label Text="Комментарий" 
+                       FontSize="16"
+                       TextColor="#666666"/>
+                <Frame Padding="0" BorderColor="#E0E0E0" CornerRadius="10" HeightRequest="150">
+                    <Editor x:Name="CommentEditor"
+                            Placeholder="Напишите ваш отзыв..."
+                            AutoSize="TextChanges"
+                            FontSize="16"
+                            TextColor="#333333"
+                            BackgroundColor="White"
+                            Margin="10,0"/>
+                </Frame>
+
+                <Button Text="Отправить отзыв"
+                        Clicked="OnSubmitClicked"
+                        BackgroundColor="#c992a1"
+                        TextColor="White"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        CornerRadius="12"
+                        HeightRequest="50"/>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+
 </ContentPage>
